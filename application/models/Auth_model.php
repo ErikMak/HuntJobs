@@ -5,10 +5,8 @@ class Auth_model extends CI_Model {
 		$this->load->database();
 	}
 
-	private function accountExist($email) {
-		$query = $this->db->select('*')->from('users')
-			->where('email', $email)
-		->get();
+	private function isAccountExist($email) {
+		$query = $this->db->get_where('users', array('email' => $email));
 
 		if($query->num_rows() > 0) {
 			return TRUE;
@@ -17,8 +15,7 @@ class Auth_model extends CI_Model {
 	}
 
 	public function createAccount($username, $pass, $email, $role) {
-
-		if(!$this->accountExist($email)) {
+		if(!$this->isAccountExist($email)) {
 			$data = array(
 				'username' => $username,
 				'password' => $pass,
@@ -31,5 +28,14 @@ class Auth_model extends CI_Model {
 			return TRUE;
 		}
 		return FALSE;
+	}
+
+	public function getAccountData($pass, $email) {
+		$query = $this->db->get_where('users', array('password' => $pass, 'email' => $email));
+
+		if($query->num_rows() == 0) {
+			return NULL;
+		}
+		return $query->row_array();
 	}
 }

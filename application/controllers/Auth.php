@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
@@ -8,12 +8,16 @@ class Auth extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('auth_model');
-		$this->load->library('session');
 	}
 
 	public function index() {
-		$data['title'] = 'Войти в аккаунт';
+		$this->load->helper('url');
+		$this->load->library('session');
+		if($this->session->has_userdata('logged_in')) {
+			redirect('main');
+		}
 
+		$data['title'] = 'Войти в аккаунт';
 		$this->load->view('auth/index', $data);
 	}
 
@@ -29,14 +33,6 @@ class Auth extends CI_Controller {
 		$email = strtolower($email);
 
 		if($this->auth_model->createAccount($username, $pass, $email, $role)) {
-			$session_data = array(
-				'username' => $username,
-				'email' => $email,
-				'role' => $role,
-				'logged_in' => TRUE
-			);
-			$this->session->set_userdata($session_data);
-
 			$response = [
 				"status" => TRUE
 			];
@@ -51,6 +47,37 @@ class Auth extends CI_Controller {
 	}
 
 	public function signin() {
+		$this->load->library('session');
+		$email = $this->input->post('email');
+		$pass = $this->input->post('pass');
 
+		// Хэширование пароля
+		$pass = md5($pass.Auth::HASH);
+		// Преобразование email к нижнему регистру
+		$email = strtolower($email);
+
+		// Подгрузка данных пользователя
+		$userData = $this->auth_model->getAccountData($pass, $email);
+		if(!is_null($userData)) {
+			// Создание сессии пользователя
+			$session_data = array(
+				'username' => $userData['username'],
+				'email' => $userData['email'],
+				'role' => $userData['role'],
+				'logged_in' => TRUE
+			);
+			$this->session->set_userdata($session_data);
+
+			$response = [
+				"status" => TRUE
+			];
+			echo json_encode($response);
+		} else {
+			$response = [
+				"status" => FALSE,
+				"message" => 'Неверный логин или пароль'
+			];
+			echo json_encode($response); 
+		}
 	}
 }

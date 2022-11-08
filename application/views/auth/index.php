@@ -39,13 +39,13 @@
 						<span class="position-absolute">
 							<i class="fas fa-envelope"></i>
 						</span>
-					    <input type="email" class="form-control" placeholder="E-mail">
+					    <input id="signin-email" type="email" class="form-control" placeholder="E-mail">
 					  </div>
 					  <div class="mb-4 position-relative">
 						<span class="position-absolute">
 							<i class="fas fa-lock-alt"></i>
 						</span>
-					    <input type="password" class="form-control" placeholder="Пароль">
+					    <input id="signin-pass" type="password" class="form-control" placeholder="Пароль">
 					  </div>
 					  <div class="d-grid mb-4">
 					  	<button id="signin-btn" type="submit" class="btn btn-success fw-semibold">Войти</button>
@@ -61,14 +61,14 @@
 						<span class="position-absolute">
 							<i class="fa fa-user"></i>
 						</span>
-					    <input id="username" type="text" class="form-control" placeholder="Имя пользователя">
+					    <input id="signup-username" type="text" class="form-control" placeholder="Имя пользователя">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
 						<span class="position-absolute">
 							<i class="far fa-tools"></i>
 						</span>
-					    <select id="role" class="form-select">
+					    <select id="signup-role" class="form-select">
 						  <option value="1">Соискатель</option>
 						  <option value="2">Работодатель</option>
 						</select>
@@ -78,21 +78,21 @@
 						<span class="position-absolute">
 							<i class="fas fa-envelope"></i>
 						</span>
-					    <input id="email" type="email" class="form-control" placeholder="E-mail">
+					    <input id="signup-email" type="email" class="form-control" placeholder="E-mail">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
 						<span class="position-absolute">
 							<i class="fas fa-lock-alt"></i>
 						</span>
-					    <input id="pass" type="password" class="form-control" placeholder="Пароль">
+					    <input id="signup-pass" type="password" class="form-control" placeholder="Пароль">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
 						<span class="position-absolute">
 							<i class="fas fa-lock-alt"></i>
 						</span>
-					    <input id="confirm-pass" type="password" class="form-control" placeholder="Повтор пароля">
+					    <input id="signup-confirm-pass" type="password" class="form-control" placeholder="Повтор пароля">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="d-grid mb-4">
@@ -104,7 +104,7 @@
 			</div>
 		</div>
 	</div>
-<script src="/files/scripts/auth-validation.js"></script>
+<script src="/files/scripts/auth.js"></script>
 <script src="/files/bootstrap.bundle.min.js"></script> <!--Bootstrap Bundle JS-->
 </body>
 </html>

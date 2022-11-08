@@ -1,7 +1,7 @@
 function checkEmail(form) {
 	let valid = false;
 
-	const input = form.querySelector('#email');
+	const input = form.querySelector('#signup-email');
 	const value = input.value.trim();
 	const rv_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 	
@@ -18,7 +18,7 @@ function checkEmail(form) {
 function checkUsername(form) {
 	let valid = false;
 
-	const input = form.querySelector('#username');
+	const input = form.querySelector('#signup-username');
 	const value = input.value.trim();
 	const rv_username = /^(?=.{1,24}$)[a-zA-Z][a-zA-Z0-9]*(?: [a-zA-Z0-9]+)*$/;
 	
@@ -35,7 +35,7 @@ function checkUsername(form) {
 function checkPassword(form) {
 	let valid = false;
 
-	const input = form.querySelector('#pass');
+	const input = form.querySelector('#signup-pass');
 	const value = input.value.trim();
 	const rv_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
 	
@@ -52,9 +52,9 @@ function checkPassword(form) {
 function checkConfirmPass(form) {
 	let valid = false;
 
-	const input = form.querySelector('#confirm-pass');
+	const input = form.querySelector('#signup-confirm-pass');
 	const value = input.value.trim();
-	const password = form.querySelector('#pass').value.trim();
+	const password = form.querySelector('#signup-pass').value.trim();
 	
 	if(value == '') {
 		setErrorFor(input.parentElement, 'Подтвердите свой пароль!');
@@ -83,7 +83,7 @@ function setSuccessFor(form_group, msg) {
 	small.classList.add('hide');
 }
 
-function validateForm() {
+function signupAction() {
 	const formHandle = document.querySelector('#signup');
 
 	let isUsernameValid = checkUsername(formHandle),
@@ -98,10 +98,10 @@ function validateForm() {
 
 	if(isFormValid) {
 		let userData = {
-			username: formHandle.querySelector('#username').value,
-			role: formHandle.querySelector('#role').value,
-			email: formHandle.querySelector('#email').value,
-			pass: formHandle.querySelector('#pass').value
+			username: formHandle.querySelector('#signup-username').value,
+			role: formHandle.querySelector('#signup-role').value,
+			email: formHandle.querySelector('#signup-email').value,
+			pass: formHandle.querySelector('#signup-pass').value
 		};
 
 		$.ajax({
@@ -129,19 +129,48 @@ function validateForm() {
 	}
 }
 
+function signinAction() {
+	const formHandle = document.querySelector('#signin');
+
+	let userData = {
+		email: formHandle.querySelector('#signin-email').value,
+		pass: formHandle.querySelector('#signin-pass').value
+	};
+
+	$.ajax({
+		url: 'auth/signin',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			email: userData.email,
+			pass: userData.pass
+		},
+		success: function(data) {
+			if(data['status'] === true) {
+				window.location = '/main';
+			} else {
+				const error_card = document.querySelector('#error-card');
+
+				error_card.classList.remove('none');
+				error_card.innerHTML = data['message'];
+			}
+		}
+	});
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
 	const signin_btn = document.querySelector('#signin-btn');
 	signin_btn.addEventListener('click', e => {
 		e.preventDefault();
 
-		validate();
+		signinAction();
 	});
 
 	const signup_btn = document.querySelector('#signup-btn');
 	signup_btn.addEventListener('click', e => {
 		e.preventDefault();
 
-		validateForm();
+		signupAction();
 	})
 });

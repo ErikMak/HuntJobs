@@ -6,11 +6,17 @@
 		</div>
 		<div class="profile-case d-flex align-items-center">
 			<div class="profile-info d-flex flex-column me-3">
-				<b>Joe Doe</b>
-				<i class="fst-normal">Работодатель</i>
+				<b><?php echo $username;?></b>
+				<i class="fst-normal"><?php
+					if($role == 1) {
+						echo 'Соискатель';
+					} else if($role == 2) {
+						echo 'Работодатель';
+					}?>
+				</i>
 			</div>
 			<span>
-				<a href="#"><i class="far fa-sign-out"></i></a>
+				<a href="/account/logout"><i class="far fa-sign-out"></i></a>
 			</span>
 		</div>
 	</div>

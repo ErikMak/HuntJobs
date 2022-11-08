@@ -9,6 +9,16 @@ class Vacancies extends CI_Controller {
 	}
 
 	public function index() {
+		$this->load->helper('url');
+		$this->load->library('session');
+
+		if(!$this->session->has_userdata('logged_in')) {
+			redirect('auth');
+		}
+		// Данные сессии
+		$data['username'] = $this->session->userdata('username');
+		$data['role'] = $this->session->userdata('role');
+
 		if($this->input->get('category')) {
 			$category = $this->input->get('category');
 
@@ -46,6 +56,14 @@ class Vacancies extends CI_Controller {
 		if(empty($data['vacancy'])) {
 			show_404();
 		}
+		$this->load->library('session');
+		if(!$this->session->has_userdata('logged_in')) {
+			redirect('auth');
+		}
+		// Данные сессии
+		$data['username'] = $this->session->userdata('username');
+		$data['role'] = $this->session->userdata('role');
+
 		$data['title'] = $data['vacancy']['job'];
 		$data['timestamp'] = $data['vacancy']['timestamp'];
 		$data['salary'] = $data['vacancy']['salary'];
