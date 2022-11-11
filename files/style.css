@@ -109,6 +109,10 @@ header .header-item a {
 header .header-item a:hover {
   color: #17c75c;
 }
+header .header-item a.active {
+  pointer-events: none;
+  color: #17c75c;
+}
 header .header-item span.rounded-circle {
   top: 13%;
   left: 90%;
@@ -262,7 +266,8 @@ main .main-header p {
   color: #8c8d90;
 }
 main .catalog-cards,
-main .main-cards {
+main .main-cards,
+main .info-cards {
   display: grid;
 }
 main .main-cards {
@@ -322,6 +327,17 @@ main .catalog-cards .card-link {
 main .catalog-cards .card-link:hover {
   color: #0d6efd;
 }
+main .catalog-cards .for-employers-card {
+  background-color: #fef8e5;
+  border-radius: 6px;
+}
+main .catalog-cards .for-employers-card b {
+  font-size: 1em;
+}
+main .catalog-cards .for-employers-card button,
+main .catalog-cards .for-employers-card p {
+  font-size: 0.9em;
+}
 main .catalog-cards .card {
   border-width: 2px;
   border-color: #eeeeee;
@@ -345,7 +361,26 @@ main .catalog-cards .card .description {
 main .catalog-cards .card-lg {
   display: none;
 }
-main .vacancy-description-card {
+main .pagination {
+  display: inline-block;
+}
+main .pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+main .pagination a.active {
+  background-color: #2d3033;
+  color: white;
+  border-radius: 5px;
+}
+main .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+main .vacancy-description-card,
+main .profile-card {
   border: 2px solid #eeeeee;
   border-radius: 6px;
 }
@@ -353,6 +388,13 @@ main .vacancy-description-card .vacancy-info p,
 main .vacancy-description-card .vacancy-info small,
 main .vacancy-description-card .vacancy-info a {
   font-size: 0.8rem !important;
+}
+main .profile-card .profile-avatar img {
+  max-width: 50px;
+  border-radius: 50%;
+}
+main .profile-card small {
+  color: #5f6063;
 }
 aside {
   max-width: 310px !important;
@@ -502,19 +544,20 @@ aside small {
   transform: translateY(10px);
 }
 .sm-navbar li:nth-child(1).active ~ .indicator {
+  visibility: visible;
   transform: translateX(calc(0px));
 }
 .sm-navbar li:nth-child(2).active ~ .indicator {
+  visibility: visible;
   transform: translateX(calc(70px));
 }
 .sm-navbar li:nth-child(3).active ~ .indicator {
+  visibility: visible;
   transform: translateX(calc(140px));
 }
 .sm-navbar li:nth-child(4).active ~ .indicator {
+  visibility: visible;
   transform: translateX(calc(210px));
-}
-.sm-navbar li:nth-child(5).active ~ .indicator {
-  transform: translateX(calc(280px));
 }
 .sm-navbar a {
   width: 100%;
@@ -527,24 +570,25 @@ aside small {
   display: block;
   line-height: 70px;
   font-size: 1.5em;
-  transition: 0.5s;
+  transition: 0.3s;
   z-index: 99;
 }
 .sm-navbar a .text {
   color: #feffff;
   font-size: 0.75em;
   letter-spacing: 0.05em;
-  transition: 0.5s;
+  transition: 0.3s;
   opacity: 0;
   transform: translateY(20px);
 }
 .sm-navbar .indicator {
+  visibility: hidden;
   top: -50%;
   width: 70px;
   height: 70px;
   background: #17c75c;
   border: 6px solid #2d3033;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 footer {
   background-color: #161819;
@@ -602,6 +646,18 @@ footer a:hover {
     padding-right: 1.2em;
     padding-left: 1.2em;
   }
+  main .nav-path {
+    flex-direction: column;
+  }
+  main .nav-path i {
+    display: none;
+  }
+  main .nav-path a {
+    margin-bottom: 2px;
+  }
+  main .main-cards {
+    grid-template-columns: 1fr;
+  }
   aside {
     display: none;
   }
@@ -632,6 +688,9 @@ footer a:hover {
     min-width: fit-content;
     max-width: 0 !important;
   }
+  main .main-cards {
+    grid-template-columns: 1fr 1fr;
+  }
   aside {
     display: none;
   }
@@ -655,6 +714,9 @@ footer a:hover {
     min-width: fit-content;
     max-width: 0 !important;
   }
+  main .main-cards {
+    grid-template-columns: 1fr 1fr;
+  }
   aside {
     display: none;
   }
@@ -667,5 +729,13 @@ footer a:hover {
   #login-section {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  main .main-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 1399.98px) and (min-width: 1200px) {
+  main .main-cards {
+    gap: 1rem;
   }
 }

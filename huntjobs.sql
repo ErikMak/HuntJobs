@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 05 2022 г., 22:14
+-- Время создания: Ноя 11 2022 г., 20:46
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.21
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- База данных: `huntjobs`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `resumes`
+--
+
+CREATE TABLE `resumes` (
+  `user_id` int NOT NULL,
+  `full_name` text NOT NULL,
+  `age` text NOT NULL,
+  `exp` text NOT NULL,
+  `education` text NOT NULL,
+  `requirements` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -65,6 +80,12 @@ INSERT INTO `vacancies` (`id`, `user_id`, `job`, `salary`, `description`, `categ
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `resumes`
+--
+ALTER TABLE `resumes`
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
 -- Индексы таблицы `users`

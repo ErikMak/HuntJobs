@@ -1,7 +1,7 @@
 <div class="sm-navbar mb-3 shadow position-fixed rounded-4 justify-content-center align-items-center">
 	<ul class="d-flex p-0 mb-0">
-		<li class="sm-navbar-item active position-relative">
-			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="#">
+		<li class="sm-navbar-item position-relative">
+			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="/account">
 				<span class="icon position-relative text-center">
 					<i class="far fa-user"></i>
 				</span>
@@ -11,7 +11,7 @@
 			</a>
 		</li>
 		<li class="sm-navbar-item">
-			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="#">
+			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="/main">
 				<span class="icon position-relative text-center">
 					<i class="fas fa-home-alt"></i>
 				</span>

@@ -92,7 +92,7 @@
 		  </div>
 		</div>
 	</div>
-<!-- 	<div class="main-header py-3 d-flex align-items-center">
-		<h4 class="fw-semibold mb-0">Недавно добавленные</h4>
-	</div> -->
+	<div class="main-header pt-4 pb-3 d-flex align-items-center">
+		<h4 class="fw-semibold mb-0">Новые вакансии</h4>
+	</div>
 </main>

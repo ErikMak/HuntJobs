@@ -7,7 +7,7 @@
 			<nav class="col py-1">
 				<div class="row align-items-center">
 					<div class="col header-item">
-						<a href="#">
+						<a class="navbar-link" href="/account">
 							<div class="d-flex align-items-center">
 							<span style="font-size:20px">
 							<i class="far fa-user"></i>
@@ -17,7 +17,7 @@
 						</a>
 					</div>
 					<div class="col header-item">
-						<a href="#">
+						<a class="navbar-link" href="#">
 							<span style="font-size:20px;" class="position-relative">
 							<i class="far fa-bell"></i>
 							<span class="position-absolute translate-middle p-1 rounded-circle">

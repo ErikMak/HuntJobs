@@ -11,10 +11,13 @@ class Vacancies extends CI_Controller {
 	public function index() {
 		$this->load->helper('url');
 		$this->load->library('session');
+		$this->load->library('pagination');
 
 		if(!$this->session->has_userdata('logged_in')) {
 			redirect('auth');
 		}
+
+		$offset = (int)$this->uri->segment(2);
 		// Данные сессии
 		$data['username'] = $this->session->userdata('username');
 		$data['role'] = $this->session->userdata('role');
@@ -36,14 +39,31 @@ class Vacancies extends CI_Controller {
 					$data['link'] = 'Системный программист';
 					break;
 			}
-			$data['vacancies'] = $this->vacancies_model->getVacancies($category);
-			$data['vacancies_count'] = $this->vacancies_model->getVacanciesCount($category);
+			$vacancies_count = $this->vacancies_model->getVacanciesCount($category);
+			$data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset, $category);
+
 		} else {
+			$vacancies_count = $this->vacancies_model->getVacanciesCount();
 			$data['link'] = 'Все вакансии';
 			$data['title'] = 'Доступные вакансии';
-			$data['vacancies'] = $this->vacancies_model->getVacancies();
-			$data['vacancies_count'] = $this->vacancies_model->getVacanciesCount();
+			$data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset);
 		}
+
+
+		$data['vacancies_count'] = $vacancies_count;
+		// Настройки пагинации
+		$p_config['base_url'] = base_url()."/vacancies";
+		$p_config['reuse_query_string'] = true;
+		$p_config['total_rows'] = $vacancies_count;
+		$p_config['per_page'] = 10;
+		$p_config['uri_segment'] = 2;
+		$p_config['full_tag_open'] = '<div class="pagination m-auto">';
+		$p_config['full_tag_close'] = '</div>';
+		$p_config['cur_tag_open'] = '<a href="#" class="active">';
+		$p_config['cur_tag_close'] = '</a>';
+		// Инициализация пагинации
+		$this->pagination->initialize($p_config);
+		$data['pagination'] = $this->pagination->create_links();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('vacancies/index', $data);

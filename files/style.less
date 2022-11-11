@@ -135,6 +135,10 @@ header {
 		a:hover {
 			color: @green;
 		}
+		a.active {
+			pointer-events: none;
+			color: @green;
+		}
 		span.rounded-circle {
 			top:13%;
 			left: 90%;
@@ -303,7 +307,7 @@ main {
 			color: #8c8d90;
 		}
 	}
-	.catalog-cards, .main-cards {
+	.catalog-cards, .main-cards, .info-cards {
 		display: grid;
 	}
 	.main-cards {
@@ -363,6 +367,17 @@ main {
 			color: @blue;
 		}
 
+		.for-employers-card {
+			background-color: #fef8e5;
+    		border-radius: 6px;
+    		b {
+    			font-size: 1em;
+    		}
+    		button, p {
+    			font-size: 0.9em;
+    		}
+		}
+
 		.card {
 			border-width: 2px; 
 			border-color: @light_grey;
@@ -389,7 +404,26 @@ main {
 		}
 	}
 
-	.vacancy-description-card {
+	.pagination {
+	  display: inline-block;
+	}
+	.pagination a {
+	  color: black;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
+	}
+	.pagination a.active {
+	  background-color: @grey;
+	  color: white;
+	  border-radius: 5px;
+	}
+	.pagination a:hover:not(.active) {
+	  background-color: #ddd;
+	  border-radius: 5px;
+	}
+
+	.vacancy-description-card, .profile-card {
 		border: 2px solid @light_grey;
 		border-radius: 6px;
 	}
@@ -397,6 +431,16 @@ main {
 	.vacancy-description-card {
 		.vacancy-info p, .vacancy-info small, .vacancy-info a {
 			font-size: 0.8rem !important;
+		}
+	}
+
+	.profile-card {
+		.profile-avatar img {
+			max-width: 50px;
+			border-radius: 50%;
+		}
+		small {
+			color: @dark_grey;
 		}
 	}
 }
@@ -549,19 +593,20 @@ aside {
 		transform: translateY(10px);
 	}
 	li:nth-child(1).active ~ .indicator {
+		visibility: visible;
 		transform: translateX(calc(70px * 0));
 	}
 	li:nth-child(2).active ~ .indicator {
+		visibility: visible;
 		transform: translateX(calc(70px * 1));
 	}
 	li:nth-child(3).active ~ .indicator {
+		visibility: visible;
 		transform: translateX(calc(70px * 2));
 	}
 	li:nth-child(4).active ~ .indicator {
+		visibility: visible;
 		transform: translateX(calc(70px * 3));
-	}
-	li:nth-child(5).active ~ .indicator {
-		transform: translateX(calc(70px * 4));
 	}
 	a {
 		width: 100%;
@@ -573,25 +618,26 @@ aside {
 			display: block;
 			line-height: 70px;
 			font-size: 1.5em;
-			transition: 0.5s;
+			transition: 0.3s;
 			z-index: 99;
 		}
 		.text {
 			color: @white;
 			font-size: 0.75em;
 			letter-spacing: 0.05em;
-			transition: 0.5s;
+			transition: 0.3s;
 			opacity: 0;
 			transform: translateY(20px);
 		}
 	}
 	.indicator {
+		visibility: hidden;
 		top: -50%;
 		width: 70px;
 		height: 70px;
 		background: @green;
 		border: 6px solid @grey;
-		transition: 0.5s;
+		transition: 0.3s;
 	}
 }
 
@@ -653,6 +699,20 @@ footer {
 		padding-right: 1.2em;
 		padding-left: 1.2em;
 	}
+	main {
+		.nav-path {
+			flex-direction: column;
+			i {
+				display: none;
+			}
+			a {
+				margin-bottom: 2px;
+			}
+		}
+		.main-cards {
+			grid-template-columns: 1fr;
+		}
+	}
 	aside {
 		display: none;
 	}
@@ -689,6 +749,9 @@ footer {
 			max-width: 0 !important;
 		}
 	}
+	main .main-cards {
+		grid-template-columns: 1fr 1fr;
+	}
 	aside {
 		display: none;
 	}
@@ -718,6 +781,9 @@ footer {
 			max-width: 0 !important;
 		}
 	}
+	main .main-cards {
+		grid-template-columns: 1fr 1fr;
+	}
 	aside {
 		display: none;
 	}
@@ -733,7 +799,14 @@ footer {
 		display: grid;
 		grid-template-columns: 1fr;
 	}
+	main .main-cards {
+		grid-template-columns: 1fr 1fr;
+	}
 }
 
 // `xxl` applies to x-large devices (large desktops, less than 1400px)
-@media only screen and (max-width: 1399.98px) and (min-width: 1200px) { }
+@media only screen and (max-width: 1399.98px) and (min-width: 1200px) { 
+	main .main-cards {
+		gap: 1rem;
+	}
+}

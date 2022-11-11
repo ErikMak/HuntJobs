@@ -5,13 +5,13 @@ class Vacancies_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function getVacancies($category = FALSE) {
+	public function getVacancies($row_count, $offset, $category = FALSE) {
 		if($category === FALSE) {
-			$query = $this->db->get('vacancies');
+			$query = $this->db->get('vacancies', $row_count, $offset);
 			return $query->result_array();
 		}
 
-		$query = $this->db->get_where('vacancies', array('category' => $category));
+		$query = $this->db->get_where('vacancies', array('category' => $category), $row_count, $offset);
 		return $query->result_array();
 	}
 

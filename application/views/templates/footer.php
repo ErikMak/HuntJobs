@@ -19,7 +19,7 @@
 			</div>
 		</div>
 	</footer>
-	<script src="/files/scripts/ui.js"></script> <!--Bootstrap Bundle JS-->
+	<script src="/files/scripts/ui.js"></script>
 	<script src="/files/bootstrap.bundle.min.js"></script> <!--Bootstrap Bundle JS-->
 </body>
 </html>

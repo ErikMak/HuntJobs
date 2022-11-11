@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				item.classList.remove('active'));
 			this.classList.add('active');
 		});
+
+		const item_link = item.querySelector('a');
+		if(window.location.href == item_link.href) {
+			item.classList.add('active');
+		}
 	});
 
 	const burger_btn = document.querySelector('.burger-button');
@@ -42,5 +47,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		if(window.location.href == item.href) {
 			item.classList.add('active');
 		}
+	});
+
+	const navbar_links = document.querySelectorAll('.navbar-link');
+	navbar_links.forEach(function (item) {
+		if(window.location.href == item.href) {
+			item.classList.add('active');
+		}
+	});
+
+	const request_btns = document.querySelectorAll('#send-request');
+	request_btns.forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			let toasts = [].slice.call(document.querySelectorAll('.toast'));
+			let toastsList = toasts.map(function(item) {
+			    return new bootstrap.Toast(item);
+			});
+
+			toastsList.forEach(toast => toast.show());
+		});
 	});
 });
