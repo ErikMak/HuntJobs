@@ -18,10 +18,16 @@
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Exo2';
+  src: url('fonts/Exo2-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
 /* THEME */
 *::selection {
   background: #B21A1A;
-  color: white;
+  color: #fbf6f6;
 }
 *::-webkit-scrollbar {
   width: 9px;
@@ -40,18 +46,28 @@
 .btn-success {
   background-color: #17c75c;
 }
-.btn-success:hover {
-  background-color: #14af51;
-}
+.btn-success:hover,
 .btn-success:focus {
   background-color: #14af51;
 }
-.btn-danger {
+.btn-danger,
+.btn-primary {
   font-weight: 400;
   font-size: 0.8em;
   min-width: 80px;
   max-height: 29px;
   line-height: 29px;
+}
+.btn-primary {
+  background-color: #005bff;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom-color: #0050e0;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0050e0;
 }
 .btn-danger {
   background-color: #f3353a;
@@ -60,9 +76,7 @@
   border-left: none;
   border-bottom-color: #d52c31;
 }
-.btn-danger:hover {
-  background-color: #d52c31;
-}
+.btn-danger:hover,
 .btn-danger:focus {
   background-color: #d52c31;
 }
@@ -134,7 +148,7 @@ header .slide-menu .burger-button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 header .slide-menu .burger-button span {
-  background-color: white;
+  background-color: #fbf6f6;
   width: 100%;
   height: 3px;
   transition: .3s;
@@ -167,7 +181,7 @@ header .search-button {
   background-color: #17c75c;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  color: white;
+  color: #fbf6f6;
   border-top: none;
   border-right: none;
   border-left-color: #2d3033;
@@ -181,7 +195,7 @@ header .logo {
 }
 #login-section .error-card {
   background: linear-gradient(to left, #ff6868, #ed6060);
-  color: white;
+  color: #fbf6f6;
 }
 #login-section .error-card.none {
   display: none;
@@ -198,17 +212,17 @@ header .logo {
 }
 #login-section .login-card {
   background: #2d3033;
-  color: white;
+  color: #fbf6f6;
 }
 #login-section .login-card form input,
 #login-section .login-card form select {
-  background-color: #44494d;
+  background-color: #44494D;
   border: none;
   padding-left: 2.3em;
 }
 #login-section .login-card form input,
 #login-section .login-card form select {
-  color: white;
+  color: #fbf6f6;
 }
 #login-section .login-card form span {
   color: #aaaaaa;
@@ -244,7 +258,7 @@ header .logo {
   font-size: 1em;
 }
 #login-section .login-card .login-header ul li a.active {
-  color: white;
+  color: #fbf6f6;
   font-size: 1.5em;
 }
 main,
@@ -347,7 +361,7 @@ main .catalog-cards .card .card-author {
 }
 main .catalog-cards .card .card-body small {
   font-size: 0.8em;
-  color: #6a6b6f;
+  color: #5f6063;
 }
 main .catalog-cards .card .card-body p {
   font-size: 0.8em;
@@ -372,7 +386,7 @@ main .pagination a {
 }
 main .pagination a.active {
   background-color: #2d3033;
-  color: white;
+  color: #fbf6f6;
   border-radius: 5px;
 }
 main .pagination a:hover:not(.active) {
@@ -466,7 +480,7 @@ aside hr {
 }
 aside small {
   font-size: 0.55em;
-  color: #6a6b6f;
+  color: #5f6063;
 }
 .sm-aside {
   display: none;
@@ -478,12 +492,12 @@ aside small {
 .sm-aside .sidebar-category {
   font-weight: 400;
   font-size: 0.875em;
-  color: white;
+  color: #fbf6f6;
 }
 .sm-aside .sidebar-link {
   font-weight: 400;
   font-size: 0.875em;
-  color: white;
+  color: #fbf6f6;
 }
 .sm-aside .sidebar-item a:hover:not(.active),
 .sm-aside .sidebar-item a.active {
@@ -566,7 +580,7 @@ aside small {
   font-family: 'Exo2', sans-serif;
 }
 .sm-navbar a .icon {
-  color: #feffff;
+  color: #fbf6f6;
   display: block;
   line-height: 70px;
   font-size: 1.5em;
@@ -574,7 +588,7 @@ aside small {
   z-index: 99;
 }
 .sm-navbar a .text {
-  color: #feffff;
+  color: #fbf6f6;
   font-size: 0.75em;
   letter-spacing: 0.05em;
   transition: 0.3s;
@@ -596,14 +610,14 @@ footer {
 }
 footer p {
   text-transform: uppercase;
-  color: white;
+  color: #fbf6f6;
   font-size: 13px;
 }
 footer a {
   color: #8b9296;
 }
 footer a:hover {
-  color: white;
+  color: #fbf6f6;
 }
 /* MEDIA QUERIES */
 @media only screen and (max-width: 575.98px) {

@@ -1,3 +1,48 @@
+function showToasts(title, msg) {
+	let toasts = [].slice.call(document.querySelectorAll('.toast'));
+	let toastsList = toasts.map(function(item) {
+	    return new bootstrap.Toast(item, {content: 'Hello World!'});
+	});
+
+	toastsList.forEach(function (toast) {
+		document.querySelector('.toast-body').innerHTML = msg;
+		document.querySelector('.toast-title').innerHTML = title;
+		toast.show();
+	});
+}
+
+function saveResume() {
+	const formHandle = document.querySelector('#resume');
+
+	let resumeData = {
+		full_name: formHandle.querySelector('#full-name').value,
+		age: formHandle.querySelector('#age').value,
+		experience: formHandle.querySelector('#experience').value,
+		education: formHandle.querySelector('#education').value,
+		requirements: formHandle.querySelector('#requirements').value
+	};
+
+	$.ajax({
+		url: 'account/sendResume',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			full_name: resumeData.full_name,
+			age: resumeData.age,
+			experience: resumeData.experience,
+			education: resumeData.education,
+			requirements: resumeData.requirements
+		}, 
+		success: function(data) {
+			if(data['status'] == true) {
+				$('#resumeModal').modal('hide');
+
+				showToasts('Мой профиль', data['message']);
+			}
+		}
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	const sm_navbar_item = document.querySelectorAll('.sm-navbar-item');
 	sm_navbar_item.forEach(function (item) {
@@ -59,12 +104,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	const request_btns = document.querySelectorAll('#send-request');
 	request_btns.forEach(function (btn) {
 		btn.addEventListener('click', function () {
-			let toasts = [].slice.call(document.querySelectorAll('.toast'));
-			let toastsList = toasts.map(function(item) {
-			    return new bootstrap.Toast(item);
-			});
-
-			toastsList.forEach(toast => toast.show());
+			showToasts('Hello', 'World');
 		});
 	});
+
+	const resume_modal = document.querySelector('#resumeModal');
+	if (typeof(resume_modal) != 'undefined' && resume_modal != null) {
+	  const save_btn = document.getElementById('save-resume');
+	  save_btn.addEventListener('click', function() {
+	  	saveResume();
+	  });
+	}
 });

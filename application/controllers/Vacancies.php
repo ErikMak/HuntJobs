@@ -53,7 +53,7 @@ class Vacancies extends CI_Controller {
 		$data['vacancies_count'] = $vacancies_count;
 		// Настройки пагинации
 		$p_config['base_url'] = base_url()."/vacancies";
-		$p_config['reuse_query_string'] = true;
+		$p_config['reuse_query_string'] = TRUE;
 		$p_config['total_rows'] = $vacancies_count;
 		$p_config['per_page'] = 10;
 		$p_config['uri_segment'] = 2;

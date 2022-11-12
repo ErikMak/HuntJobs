@@ -61,6 +61,7 @@ class Auth extends CI_Controller {
 		if(!is_null($userData)) {
 			// Создание сессии пользователя
 			$session_data = array(
+				'user_id' => $userData['id'],
 				'username' => $userData['username'],
 				'email' => $userData['email'],
 				'role' => $userData['role'],

@@ -45,7 +45,7 @@
 	  <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
 	    <div class="toast-header">
 	      <span class="me-2" style="color: #0d6efd; font-size: 1.2em;"><i class="fas fa-info-square"></i></span>
-	      <strong class="me-auto">Title</strong>
+	      <strong class="toast-title me-auto">Title</strong>
 	      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 	    </div>
 	    <div class="toast-body">

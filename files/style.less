@@ -21,21 +21,40 @@
     font-weight: 700;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Exo2';
+    src: url('fonts/Exo2-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
 
 /* THEME */
-@white: #FEFFFF;
-@green: #17c75c;
-@black: #161819;
-@yellow: #F6F8B5;
-@light_grey: #EEEEEE;
-@grey: #2D3033;
-@dark_grey: #5f6063;
-@red: #f3353a;
-@blue: #0d6efd;
+// Buttons
+@btn-primary: #005BFF; 
+@btn-primary-hover: #0050E0;
+@btn-danger: #F3353A;
+@btn-danger-hover: #D52C31;
+@btn-success:#17C75C;
+@btn-success-hover: #14AF51;
+@btn-dark: #2D3033;
+// Containers
+@section-container: #FEFFFF;
+@header: #2D3033;
+@card-border: #EEEEEE;
+@footer: #161819;
+// Text color
+@white-text: #FBF6F6;
+@grey-text: #5F6063;
+@green-text: #17C75C;
+@red-text: #F3353A;
+// Other
+@yellow-bg: #FEF8E5;
+@links: #0D6EFD;
+@notification-circle: #F3353A;
 
 *::selection {
 	background: #B21A1A;
-	color: white;
+	color: @white-text;
 }
 *::-webkit-scrollbar {
     width: 9px;
@@ -55,36 +74,40 @@
 
 /* BUTTONS */
 .btn-success {
-	background-color: @green;
+	background-color: @btn-success;
 }
 
-.btn-success:hover {
-	background-color: #14af51;
+.btn-success:hover, .btn-success:focus {
+	background-color: @btn-success-hover;
 }
 
-.btn-success:focus {
-	background-color: #14af51;
-}
-
-.btn-danger {
+.btn-danger, .btn-primary {
 	font-weight: 400;
 	font-size: 0.8em;
 	min-width: 80px;
 	max-height: 29px;
 	line-height: 29px;
 }
-.btn-danger {
-	background-color: @red;
+.btn-primary {
+	background-color: @btn-primary;
 	border-top: none;
 	border-right: none;
 	border-left: none;
-	border-bottom-color: #d52c31;
+	border-bottom-color: @btn-primary-hover;
 }
-.btn-danger:hover {
-	background-color: #d52c31;
+.btn-primary:hover, .btn-primary:focus {
+	background-color: @btn-primary-hover;
 }
-.btn-danger:focus {
-	background-color: #d52c31;
+
+.btn-danger {
+	background-color: @btn-danger;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-bottom-color: @btn-danger-hover;
+}
+.btn-danger:hover, .btn-danger:focus  {
+	background-color: @btn-danger-hover;
 }
 
 /* PAGE */
@@ -116,34 +139,34 @@ header, footer {
 .section-container {
 	padding-right: 2.2em;
 	padding-left: 1.2em;
-	background-color: @white;
+	background-color: @section-container;
 	-webkit-box-shadow: 0px 0px 19px -1px rgba(34, 60, 80, 0.09);
 	-moz-box-shadow: 0px 0px 19px -1px rgba(34, 60, 80, 0.09);
 	box-shadow: 0px 0px 19px -1px rgba(34, 60, 80, 0.09);
 }
 
 header {
-	background-color: @grey;
-	color: #fbf6f6;
+	background-color: @header;
+	color: @white-text;
 
 	.header-item {
 		max-width: fit-content;
 		font-size: 0.8em;
 		a {
-			color: #fbf6f6;
+			color: @white-text;
 		}
 		a:hover {
-			color: @green;
+			color: @green-text;
 		}
 		a.active {
 			pointer-events: none;
-			color: @green;
+			color: @green-text;
 		}
 		span.rounded-circle {
 			top:13%;
 			left: 90%;
-			background-color: @red;
-			border: 1px solid @grey;
+			background-color: @notification-circle;
+			border: 1px solid @header;
 		}
 	}
 
@@ -160,7 +183,7 @@ header {
 			  touch-action: manipulation;
 			  -webkit-tap-highlight-color: rgba(0,0,0,0);
 			span {
-			  background-color: white;
+			  background-color: @white-text;
 			  width: 100%;
 			  height: 3px;
 			  transition: .3s;
@@ -200,13 +223,13 @@ header {
 	}
 
 	.search-button {
-		background-color: @green;
+		background-color: @btn-success;
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
-		color: white;
+		color: @white-text;
 		border-top: none;
 		border-right: none;
-		border-left-color: @grey;
+		border-left-color: @header;
 	}
 	.logo {
 		max-height: 26px;
@@ -218,7 +241,7 @@ header {
 	grid-template-columns: 1fr 1fr;
 	.error-card {
 		background: linear-gradient(to left, #ff6868, #ed6060);
-		color: white;
+		color: @white-text;
 	}
 	.error-card.none {
 		display: none;
@@ -233,16 +256,16 @@ header {
 		box-shadow: 0px 0px 19px -1px rgba(34, 60, 80, 0.09);
 	}
 	.login-card {
-		background: @grey;
-		color: white;
+		background: @header;
+		color: @white-text;
 		form {
 			input,select {
-				background-color: #44494d;
+				background-color: #44494D;
 				border: none;
 				padding-left: 2.3em;
 			}
 			input, select {
-				color: white;
+				color: @white-text;
 			}
 			span {
 				color: #aaaaaa;
@@ -269,7 +292,7 @@ header {
 			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 		}
 		.login-header {
-			background: @grey;
+			background: @header;
 			ul {
 				align-items: center;
 			}
@@ -278,7 +301,7 @@ header {
 				font-size: 1em;
 			}
 			ul li a.active {
-				color: white;
+				color: @white-text;
 				font-size: 1.5em;
 			}
 		}
@@ -292,10 +315,10 @@ main, nav {
 main {
 	.nav-path {
 		font-size: 0.7em;
-		color: @dark_grey;
+		color: @grey-text;
 		font-weight: 400;
 		a {
-			color: @dark_grey;
+			color: @grey-text;
 		}
 		a:hover {
 			color: black;
@@ -364,11 +387,11 @@ main {
 			color: black;
 		}
 		.card-link:hover {
-			color: @blue;
+			color: @links;
 		}
 
 		.for-employers-card {
-			background-color: #fef8e5;
+			background-color: @yellow-bg;
     		border-radius: 6px;
     		b {
     			font-size: 1em;
@@ -380,14 +403,14 @@ main {
 
 		.card {
 			border-width: 2px; 
-			border-color: @light_grey;
+			border-color: @card-border;
 
 			.card-author {
-				background-color: @light_grey;
+				background-color: @card-border;
 			}
 			.card-body small {
 				font-size: 0.8em;
-				color: #6a6b6f;
+				color: @grey-text;
 			}
 			.card-body p {
 				font-size: 0.8em;
@@ -414,8 +437,8 @@ main {
 	  text-decoration: none;
 	}
 	.pagination a.active {
-	  background-color: @grey;
-	  color: white;
+	  background-color: @btn-dark;
+	  color: @white-text;
 	  border-radius: 5px;
 	}
 	.pagination a:hover:not(.active) {
@@ -424,7 +447,7 @@ main {
 	}
 
 	.vacancy-description-card, .profile-card {
-		border: 2px solid @light_grey;
+		border: 2px solid @card-border;
 		border-radius: 6px;
 	}
 
@@ -440,7 +463,7 @@ main {
 			border-radius: 50%;
 		}
 		small {
-			color: @dark_grey;
+			color: @grey-text;
 		}
 	}
 }
@@ -449,7 +472,7 @@ aside {
 	max-width: 310px !important;
 	padding-right: 2.2em !important;
 	min-height: 100vh;
-	border-right: 2px solid @light_grey;
+	border-right: 2px solid @card-border;
 	.sidebar-category {
 		font-weight: 400;
 		font-size: 0.875em;
@@ -458,7 +481,7 @@ aside {
 	.sidebar-link {
 		font-weight: 400;
 		font-size: 0.875em;
-		color: @dark_grey;
+		color: @grey-text;
 	}
 	.sidebar-links ul {
 		padding-left: 2em;
@@ -475,7 +498,7 @@ aside {
 		pointer-events: none;
 	}
 	.sidebar-item a:hover:not(.active), .sidebar-item a.active {
-		color: @red;
+		color: @red-text;
 		text-decoration: underline;
 	}
 	.sidebar-item {
@@ -495,7 +518,7 @@ aside {
 		}
 		i {
 			font-size: 0.625em;
-			color: @dark_grey;
+			color: @grey-text;
 		}
 		a {
 			color: #8c8d90;
@@ -509,11 +532,11 @@ aside {
 		border-radius: 50%;
 	}
 	hr {
-		color: @dark_grey;
+		color: @grey-text;
 	}
 	small {
 		font-size: 0.55em;
-		color: #6a6b6f;
+		color: @grey-text;
 	}
 }
 
@@ -526,15 +549,15 @@ aside {
 	.sidebar-category {
 		font-weight: 400;
 		font-size: 0.875em;
-		color: white;
+		color: @white-text;
 	}
 	.sidebar-link {
 		font-weight: 400;
 		font-size: 0.875em;
-		color: white;
+		color: @white-text;
 	}
 	.sidebar-item a:hover:not(.active), .sidebar-item a.active {
-		color: @red;
+		color: @red-text;
 		text-decoration: underline;
 	}
 	.sidebar-item {
@@ -542,7 +565,7 @@ aside {
 		padding-top: 1px;
 	}
 	.sidebar-dropdown:hover {
-		background-color: @black;
+		background-color: @footer;
 		border-radius: 3px;
 	}
 	.sidebar-dropdown {
@@ -579,7 +602,7 @@ aside {
 	max-width: 350px; 
 	width: 350px;
 	height: 70px;
-	background: @grey;
+	background: @header;
 	li {
 		list-style: none;
 		width: 70px;
@@ -614,7 +637,7 @@ aside {
 		font-weight: 600;
 		font-family: 'Exo2', sans-serif;
 		.icon {
-			color: @white;
+			color: @white-text;
 			display: block;
 			line-height: 70px;
 			font-size: 1.5em;
@@ -622,7 +645,7 @@ aside {
 			z-index: 99;
 		}
 		.text {
-			color: @white;
+			color: @white-text;
 			font-size: 0.75em;
 			letter-spacing: 0.05em;
 			transition: 0.3s;
@@ -635,25 +658,25 @@ aside {
 		top: -50%;
 		width: 70px;
 		height: 70px;
-		background: @green;
-		border: 6px solid @grey;
+		background: @btn-success;
+		border: 6px solid @header;
 		transition: 0.3s;
 	}
 }
 
 footer {
-	background-color: @black;
-	color: #fbf6f6;
+	background-color: @footer;
+	color: @white-text;
     p {
  		text-transform: uppercase;
- 		color: white;
+ 		color: @white-text;
  		font-size: 13px;
  	}
 	a {
 		color: #8b9296;
 	}
 	a:hover {
-	 	color: white;
+	 	color: @white-text;
 	}
 }
 
