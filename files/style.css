@@ -398,10 +398,45 @@ main .profile-card {
   border: 2px solid #eeeeee;
   border-radius: 6px;
 }
+main .notification-card {
+  border-radius: 6px;
+  background-color: white;
+}
+main .notification-card p {
+  width: 96%;
+  font-size: 14px;
+}
+main .notification-card small {
+  font-size: 0.8em;
+  bottom: 5px;
+  right: 10px;
+  color: #5f6063;
+}
 main .vacancy-description-card .vacancy-info p,
 main .vacancy-description-card .vacancy-info small,
 main .vacancy-description-card .vacancy-info a {
   font-size: 0.8rem !important;
+}
+main .requests-card .requests-title li {
+  border: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0 !important;
+  background: #2d3033;
+}
+main .requests-card .requests-title hr {
+  border: 3px solid;
+  background: #2d3033;
+  border-color: #2d3033;
+}
+main .requests-card .requests-item img {
+  width: 45px;
+  height: 45px;
+}
+main .requests-card .requests-item small.timestamp {
+  font-size: 0.8em;
+  color: #5f6063;
 }
 main .profile-card .profile-avatar img {
   max-width: 50px;

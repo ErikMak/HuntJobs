@@ -325,10 +325,8 @@ main {
 		}
 	}
 
-	.main-header {
-		p {
-			color: #8c8d90;
-		}
+	.main-header p {
+		color: #8c8d90;
 	}
 	.catalog-cards, .main-cards, .info-cards {
 		display: grid;
@@ -451,9 +449,48 @@ main {
 		border-radius: 6px;
 	}
 
+	.notification-card {
+		border-radius: 6px;
+		background-color: white;
+		p {
+			width: 96%;
+			font-size: 14px;
+		}
+		small {
+			font-size: 0.8em;
+			bottom: 5px;
+			right: 10px;
+			color: @grey-text;
+		}
+	}
+
 	.vacancy-description-card {
 		.vacancy-info p, .vacancy-info small, .vacancy-info a {
 			font-size: 0.8rem !important;
+		}
+	}
+
+	.requests-card {
+		.requests-title li {
+			border: none;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0 !important;
+			background: @header;
+		}
+		.requests-title hr {
+			border: 3px solid;
+			background: @header;
+			border-color: @header;
+		}
+		.requests-item img {
+			width: 45px;
+			height: 45px;
+		}
+		.requests-item small.timestamp {
+			font-size: 0.8em;
+			color: @grey-text;
 		}
 	}
 

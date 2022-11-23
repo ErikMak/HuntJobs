@@ -28,7 +28,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="profile-card px-4 py-3 mb-3">
+	<div class="profile-card px-4 pt-3 pb-2 mb-3">
 		<div class="d-flex justify-content-between mb-2">
 			<div class="d-flex">
 				<span class="me-2"><i class="far fa-phone-alt"></i></span>
@@ -39,9 +39,9 @@
 		<small class="mb-1">Телефон</small>
 		<p>+70000000000</p>
 		<small class="mb-1">E-mail</small>
-		<p><? echo $email; ?></p>
+		<p class="mb-2"><? echo $email; ?></p>
 	</div>
-	<div class="profile-card px-4 py-3 mb-3">
+	<div class="profile-card px-4 pt-3 pb-2 mb-3">
 		<div class="d-flex justify-content-between mb-2">
 			<div class="d-flex">
 				<span class="me-2"><i class="far fa-briefcase"></i></span>
@@ -59,7 +59,7 @@
 			<small class="mb-1">Образование</small>
 			<p><? echo $resume['education']; ?></p>
 			<small class="mb-1">Требования</small>
-			<pre><? echo $resume['requirements']; ?></pre>
+			<pre class="mb-2"><? echo $resume['requirements']; ?></pre>
 <?php else : ?>
 			<a class="text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">Создать</a>
 		</div>

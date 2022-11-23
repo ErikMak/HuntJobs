@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-start mt-3">
-    				<button type="button" class="btn btn-danger py-0 px-3 text-nowrap" id="send-request">Откликнуться</button>
+    				<button value="<? echo $value['id']; ?>" type="button" class="btn btn-danger py-0 px-3 text-nowrap" id="send-request">Откликнуться</button>
     			</div>
 		      </div>
 		  </div>

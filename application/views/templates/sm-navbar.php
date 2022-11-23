@@ -21,7 +21,7 @@
 			</a>
 		</li>
 		<li class="sm-navbar-item">
-			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="#">
+			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="/notifications">
 				<span class="icon position-relative text-center">
 					<i  class="far fa-bell"></i>
 				</span>

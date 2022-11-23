@@ -17,7 +17,7 @@
 						</a>
 					</div>
 					<div class="col header-item">
-						<a class="navbar-link" href="#">
+						<a class="navbar-link" href="/notifications">
 							<span style="font-size:20px;" class="position-relative">
 							<i class="far fa-bell"></i>
 							<span class="position-absolute translate-middle p-1 rounded-circle">

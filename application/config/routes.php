@@ -56,4 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['auth'] = 'auth';
 $route['vacancies/(:num)'] = 'vacancies';
 $route['vacancies/(:any)'] = 'vacancies/view/$1';
+$route['notifications'] = 'notifications';
 $route['account'] = 'account';
