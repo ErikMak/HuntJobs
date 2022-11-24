@@ -19,7 +19,8 @@
 			</div>
 		</div>
 	</footer>
-	<script src="/files/scripts/main-script.js"></script>
+	<script src="/files/toastr.min.js"></script> <!-- Toasts -->
 	<script src="/files/bootstrap.bundle.min.js"></script> <!--Bootstrap Bundle JS-->
+	<script src="/files/scripts/main-script.js"></script>
 </body>
 </html>

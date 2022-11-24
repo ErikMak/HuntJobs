@@ -17,11 +17,16 @@ class Account extends CI_Controller {
 			redirect('auth');
 		}
 		$data['title'] = 'Мой профиль';
-		// Данные сессии
+
+		// Данные сессии, загрузка никнейма и роли
 		$user_id = $this->session->userdata('user_id');
 		$data['username'] = $this->session->userdata('username');
 		$data['role'] = $this->session->userdata('role');
-		$data['email'] = $this->session->userdata('email');
+
+		// Загрузка контактной информации
+		$contacts = $this->account_model->getAccountContacts($user_id);
+		$data['email'] = $contacts['email'];
+		$data['phone'] = $contacts['phone'];
 
 		// Загрузка резюме
 		$resume = $this->resumes_model->getUserResume($user_id);

@@ -37,10 +37,11 @@
 			<a class="text-decoration-underline" href="#">Изменить</a>
 		</div>
 		<small class="mb-1">Телефон</small>
-		<p>+70000000000</p>
+		<p><? echo $phone; ?></p>
 		<small class="mb-1">E-mail</small>
 		<p class="mb-2"><? echo $email; ?></p>
 	</div>
+<?php if($role == 1) : ?>
 	<div class="profile-card px-4 pt-3 pb-2 mb-3">
 		<div class="d-flex justify-content-between mb-2">
 			<div class="d-flex">
@@ -65,6 +66,71 @@
 		</div>
 <?php endif; ?>
 	</div>
+<?php else : ?>
+	<div class="profile-fill-card px-4 pt-3 pb-2 mb-3">
+		<div class="d-flex justify-content-between mb-2">
+			<div class="d-flex">
+				<span class="me-2"><i class="far fa-briefcase"></i></span>
+				<p class="mb-0 fw-semibold">Мои вакансии</p>
+			</div>
+			<a id="" style="color: #FBF6F6;" class="text-decoration-underline" href="#"><i class="fas fa-chevron-down"></i></a>
+		</div>
+	</div>
+	<div class="vacancies-control-table">
+		<div class="vacancy-control-card ps-4 pe-0 py-2 mb-3">
+			<div class="d-flex flex-column">
+				<small class="text-lowercase">номер</small>
+				<b>#1</b>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">заголовок</small>
+				<span>
+					<a href="" class="text-nowrap text-decoration-underline">Web-программист</a>
+				</span>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">откликов</small>
+				<b class="text-nowrap">3</b>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">создано</small>
+				<p class="text-nowrap mb-0">24.01.2022</p>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">действие</small>
+				<span>
+					<a href="" class="text-nowrap delete-link text-decoration-underline">Удалить</a>
+				</span>
+			</div>
+		</div>
+		<div class="vacancy-control-card ps-4 pe-0 py-2 mb-3">
+			<div class="d-flex flex-column">
+				<small class="text-lowercase">номер</small>
+				<b>#1</b>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">заголовок</small>
+				<span>
+					<a href="" class="text-nowrap text-decoration-underline">Web-программист</a>
+				</span>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">откликов</small>
+				<b class="text-nowrap">3</b>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">создано</small>
+				<p class="text-nowrap mb-0">24.01.2022</p>
+			</div>
+			<div class="d-flex flex-column text-center">
+				<small class="text-lowercase">действие</small>
+				<span>
+					<a href="" class="text-nowrap delete-link text-decoration-underline">Удалить</a>
+				</span>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
 	<div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -99,19 +165,6 @@
 	      <div class="modal-footer px-4">
 	        <button type="button" id="save-resume" class="btn btn-primary py-0 px-3 text-nowrap">Сохранить</button>
 	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- Toast -->
-	<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-	  <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-	    <div class="toast-header">
-	      <span class="me-2" style="color: #0d6efd; font-size: 1.2em;"><i class="fas fa-info-square"></i></span>
-	      <strong class="toast-title me-auto">Title</strong>
-	      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-	    </div>
-	    <div class="toast-body">
-	      msg
 	    </div>
 	  </div>
 	</div>

@@ -1,16 +1,3 @@
-function showToasts(title, msg) {
-	let toasts = [].slice.call(document.querySelectorAll('.toast'));
-	let toastsList = toasts.map(function(item) {
-	    return new bootstrap.Toast(item, {content: 'Hello World!'});
-	});
-
-	toastsList.forEach(function (toast) {
-		document.querySelector('.toast-body').innerHTML = msg;
-		document.querySelector('.toast-title').innerHTML = title;
-		toast.show();
-	});
-}
-
 function saveResume() {
 	const formHandle = document.querySelector('#resume');
 
@@ -37,7 +24,27 @@ function saveResume() {
 			if(data['status'] == true) {
 				$('#resumeModal').modal('hide');
 
-				showToasts('Мой профиль', data['message']);
+				toastr.success(data['message']);
+			}
+		}
+	});
+}
+
+function sendRequest(button) {
+	const vacancy_id = button.getAttribute('value');
+
+	$.ajax({
+		url: '/requests/sendRequest',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			vacancy_id: vacancy_id,
+		}, 
+		success: function(data) {
+			if(data['status'] == true) {
+				toastr.success(data['message']);
+			} else {
+				toastr.error(data['message']);
 			}
 		}
 	});
@@ -104,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const request_btns = document.querySelectorAll('#send-request');
 	request_btns.forEach(function (btn) {
 		btn.addEventListener('click', function () {
-			showToasts('Hello', 'World');
+			sendRequest(this);
 		});
 	});
 

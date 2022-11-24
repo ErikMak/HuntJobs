@@ -6,7 +6,7 @@ class Resumes_model extends CI_Model {
 	}
 
 	public function isResumeExist($user_id) {
-		$query = $this->db->get_where('resumes', array('user_id' => $user_id));
+		$query = $this->db->get_where('resumes', array('user_id' => $user_id), 1);
 
 		if($query->num_rows() > 0) {
 			return TRUE;
@@ -15,7 +15,7 @@ class Resumes_model extends CI_Model {
 	}
 
 	public function getUserResume($user_id) {
-		$query = $this->db->get_where('resumes', array('user_id' => $user_id));
+		$query = $this->db->get_where('resumes', array('user_id' => $user_id), 1);
 		return $query->row_array();
 	}
 

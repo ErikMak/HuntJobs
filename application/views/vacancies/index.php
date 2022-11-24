@@ -20,7 +20,7 @@
 	    		</div>
 	    	</div>
 		</div>
-		<?php foreach ($vacancies as $key => $value): ?>
+<?php foreach ($vacancies as $key => $value): ?>
 		<div class="card">
 		  <div class="row g-0">
 		      <div class="card-body h-100 d-grid align-content-between">
@@ -37,20 +37,7 @@
 		      </div>
 		  </div>
 		</div>
-		<?php endforeach ?>
+<?php endforeach ?>
 		<? echo $pagination; ?>
-	</div>
-	<!-- Toast -->
-	<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-	  <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-	    <div class="toast-header">
-	      <span class="me-2" style="color: #0d6efd; font-size: 1.2em;"><i class="fas fa-info-square"></i></span>
-	      <strong class="toast-title me-auto">Title</strong>
-	      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-	    </div>
-	    <div class="toast-body">
-	      Резюме успешно отправлено.
-	    </div>
-	  </div>
 	</div>
 </main>

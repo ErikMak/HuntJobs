@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 23 2022 г., 22:06
+-- Время создания: Ноя 24 2022 г., 21:23
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.21
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `requests` (
   `id` int NOT NULL,
   `vacancy_id` int NOT NULL,
-  `resume_id` int NOT NULL,
-  `timestamp` timestamp NOT NULL
+  `user_id` int NOT NULL,
+  `timestamp` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -61,7 +61,8 @@ CREATE TABLE `users` (
   `username` varchar(24) NOT NULL,
   `role` tinyint(1) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `phone` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Не указан'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -99,7 +100,8 @@ INSERT INTO `vacancies` (`id`, `user_id`, `job`, `salary`, `description`, `categ
 -- Индексы таблицы `requests`
 --
 ALTER TABLE `requests`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `resume_id` (`user_id`);
 
 --
 -- Индексы таблицы `resumes`
@@ -135,13 +137,13 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT для таблицы `resumes`
 --
 ALTER TABLE `resumes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `vacancies`

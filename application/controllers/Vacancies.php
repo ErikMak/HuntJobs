@@ -6,6 +6,7 @@ class Vacancies extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('vacancies_model');
+		$this->load->model('account_model');
 	}
 
 	public function index() {
@@ -81,13 +82,27 @@ class Vacancies extends CI_Controller {
 			redirect('auth');
 		}
 		// Данные сессии
+		define('USER_ID', $this->session->userdata('user_id'));
+		$data['user_id'] = USER_ID;
 		$data['username'] = $this->session->userdata('username');
 		$data['role'] = $this->session->userdata('role');
 
+		// Данные вакансии
+		$vacancy_id = $data['vacancy']['id'];
+		$data['id'] = $vacancy_id;
 		$data['title'] = $data['vacancy']['job'];
 		$data['timestamp'] = $data['vacancy']['timestamp'];
 		$data['salary'] = $data['vacancy']['salary'];
 		$data['description'] = $data['vacancy']['description'];
+		// Информация о авторе вакансии
+		$data['author_id'] = $data['vacancy']['user_id'];
+		$authorData = $this->account_model->getAccountData($data['author_id']);
+		$data['author'] = $authorData['username'];
+
+		// Загрузка раздела откликов на вакансию для создателя вакансии
+		if((USER_ID == $data['author_id']) && ($data['role'] == 2)) {
+			$this->uploadVacancyRequests($data, $vacancy_id);
+		}
 
 		$category = $data['vacancy']['category'];
 		switch ($category) {
@@ -106,5 +121,31 @@ class Vacancies extends CI_Controller {
 		$this->load->view('templates/header', $data);
 		$this->load->view('vacancies/view', $data);
 		$this->load->view('templates/footer');
+	}
+
+	private function uploadVacancyRequests(&$data, $vacancy_id) {
+		$this->load->model('requests_model');
+		$this->load->model('resumes_model');
+
+		// Массив всех резюме
+		$data['resumes'] = array();
+		$counter = 0;
+
+		$requestsData = $this->requests_model->getRequests($vacancy_id);
+		foreach ($requestsData as $key => $value) {
+			$resumeItem = $this->resumes_model->getUserResume($value['user_id']);
+			// Добавление timestamp-а
+			$resumeItem['timestamp'] = date('H:i', $value['timestamp']);
+
+			// Добавление username-а и контактной информации
+			$userData = $this->account_model->getAccountData($value['user_id']);
+			$resumeItem['username'] = $userData['username'];
+			$resumeItem['phone'] = $userData['phone'];
+			$resumeItem['email'] = $userData['email'];
+
+			array_push($data['resumes'], $resumeItem);
+			$counter++;
+		}
+		$data['resumes_count'] = $counter;
 	}
 }
