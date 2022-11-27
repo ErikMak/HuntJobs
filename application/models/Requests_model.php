@@ -18,7 +18,7 @@ class Requests_model extends CI_Model {
 		$data = array(
 			'vacancy_id' => $vacancy_id,
 			'user_id' => $user_id,
-			'timestamp' => strtotime(date("H:i:s"))
+			'timestamp' => date("H:i")
 		);
 
 		$this->db->insert('requests', $data);
@@ -27,5 +27,10 @@ class Requests_model extends CI_Model {
 	public function getRequests($vacancy_id) {
 		$query = $this->db->get_where('requests', array('vacancy_id' => $vacancy_id));
 		return $query->result_array();
+	}
+
+	public function getRequestsCount($vacancy_id) {
+		$query = $this->db->get_where('requests', array('vacancy_id' => $vacancy_id));
+		return $query->num_rows();
 	}
 }

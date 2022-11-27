@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Vacancies extends CI_Controller {
+class Vacancies extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('vacancies_model');
@@ -10,48 +10,39 @@ class Vacancies extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->helper('url');
-		$this->load->library('session');
 		$this->load->library('pagination');
 
-		if(!$this->session->has_userdata('logged_in')) {
-			redirect('auth');
-		}
-
 		$offset = (int)$this->uri->segment(2);
-		// Данные сессии
-		$data['username'] = $this->session->userdata('username');
-		$data['role'] = $this->session->userdata('role');
 
 		if($this->input->get('category')) {
 			$category = $this->input->get('category');
 
 			switch ($category) {
 				case 'web_programist':
-					$data['title'] = 'Работа WEB-программистом';
-					$data['link'] = 'WEB-программист';
+					$this->data['title'] = 'Работа WEB-программистом';
+					$this->data['link'] = 'WEB-программист';
 					break;
 				case 'sistemnyi_administrator':
-					$data['title'] = 'Работа системным администратором';
-					$data['link'] = 'Системный администратор';
+					$this->data['title'] = 'Работа системным администратором';
+					$this->data['link'] = 'Системный администратор';
 					break;
 				case 'sistemnyi_programist':
-					$data['title'] = 'Работа системным программистом';
-					$data['link'] = 'Системный программист';
+					$this->data['title'] = 'Работа системным программистом';
+					$this->data['link'] = 'Системный программист';
 					break;
 			}
 			$vacancies_count = $this->vacancies_model->getVacanciesCount($category);
-			$data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset, $category);
+			$this->data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset, $category);
 
 		} else {
 			$vacancies_count = $this->vacancies_model->getVacanciesCount();
-			$data['link'] = 'Все вакансии';
-			$data['title'] = 'Доступные вакансии';
-			$data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset);
+			$this->data['link'] = 'Все вакансии';
+			$this->data['title'] = 'Доступные вакансии';
+			$this->data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset);
 		}
 
 
-		$data['vacancies_count'] = $vacancies_count;
+		$this->data['vacancies_count'] = $vacancies_count;
 		// Настройки пагинации
 		$p_config['base_url'] = base_url()."/vacancies";
 		$p_config['reuse_query_string'] = TRUE;
@@ -64,63 +55,80 @@ class Vacancies extends CI_Controller {
 		$p_config['cur_tag_close'] = '</a>';
 		// Инициализация пагинации
 		$this->pagination->initialize($p_config);
-		$data['pagination'] = $this->pagination->create_links();
+		$this->data['pagination'] = $this->pagination->create_links();
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('vacancies/index', $data);
+		$this->load->view('templates/header', $this->data);
+		$this->load->view('vacancies/index', $this->data);
 		$this->load->view('templates/footer');
 	}
 
 	public function view($slug = NULL) {
-		$data['vacancy'] = $this->vacancies_model->getVacancy($slug);
+		$vacancyData = $this->vacancies_model->getVacancy($slug);
 
-		if(empty($data['vacancy'])) {
-			show_404();
-		}
-		$this->load->library('session');
-		if(!$this->session->has_userdata('logged_in')) {
-			redirect('auth');
-		}
-		// Данные сессии
-		define('USER_ID', $this->session->userdata('user_id'));
-		$data['user_id'] = USER_ID;
-		$data['username'] = $this->session->userdata('username');
-		$data['role'] = $this->session->userdata('role');
+		// if(empty($vacancyData)) {
+		// 	show_404();
+		// }
 
 		// Данные вакансии
-		$vacancy_id = $data['vacancy']['id'];
-		$data['id'] = $vacancy_id;
-		$data['title'] = $data['vacancy']['job'];
-		$data['timestamp'] = $data['vacancy']['timestamp'];
-		$data['salary'] = $data['vacancy']['salary'];
-		$data['description'] = $data['vacancy']['description'];
+		$this->data['id'] = $vacancyData['id'];
+		$this->data['title'] = $vacancyData['job'];
+		$this->data['timestamp'] = $vacancyData['timestamp'];
+		$this->data['salary'] = $vacancyData['salary'];
+		$this->data['description'] = $vacancyData['description'];
 		// Информация о авторе вакансии
-		$data['author_id'] = $data['vacancy']['user_id'];
-		$authorData = $this->account_model->getAccountData($data['author_id']);
-		$data['author'] = $authorData['username'];
+		$this->data['author_id'] = $vacancyData['user_id'];
+		$authorData = $this->account_model->getAccountData($this->data['author_id']);
+		$this->data['author'] = $authorData['username'];
 
 		// Загрузка раздела откликов на вакансию для создателя вакансии
-		if((USER_ID == $data['author_id']) && ($data['role'] == 2)) {
-			$this->uploadVacancyRequests($data, $vacancy_id);
+		if((USER_ID == $this->data['author_id']) && ($this->data['role'] == 2)) {
+			$this->uploadVacancyRequests($this->data, $vacancyData['id']);
 		}
 
-		$category = $data['vacancy']['category'];
+		$category = $vacancyData['category'];
 		switch ($category) {
 			case 'web_programist':
-				$data['link'] = 'WEB-программист';
+				$this->data['link'] = 'WEB-программист';
 				break;
 			case 'sistemnyi_administrator':
-				$data['link'] = 'Системный администратор';
+				$this->data['link'] = 'Системный администратор';
 				break;
 			case 'sistemnyi_programist':
-				$data['link'] = 'Системный программист';
+				$this->data['link'] = 'Системный программист';
 				break;
 		}
-		$data['category'] = $category;
+		$this->data['category'] = $category;
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('vacancies/view', $data);
+		$this->load->view('templates/header', $this->data);
+		$this->load->view('vacancies/view', $this->data);
 		$this->load->view('templates/footer');
+	}
+
+	public function create() {
+		if($this->session->userdata('role') != 2) {
+			show_404();
+		}
+
+		$this->data['title'] = 'Создать вакансию';
+
+		$this->load->view('templates/header', $this->data);
+		$this->load->view('vacancies/create', $this->data);
+		$this->load->view('templates/footer');
+	}
+
+	public function postVacancy() {
+		$header = $this->input->post('header');
+		$salary = $this->input->post('salary');
+		$category = $this->input->post('category');
+		$desc = $this->input->post('desc');
+
+		$this->vacancies_model->createVacancy(USER_ID, $header, $salary, $category, $desc);
+
+		$response = [
+			"status" => TRUE,
+			"message" => 'Вакансия успешно создана!.'
+		];
+		echo json_encode($response);
 	}
 
 	private function uploadVacancyRequests(&$data, $vacancy_id) {
@@ -135,7 +143,7 @@ class Vacancies extends CI_Controller {
 		foreach ($requestsData as $key => $value) {
 			$resumeItem = $this->resumes_model->getUserResume($value['user_id']);
 			// Добавление timestamp-а
-			$resumeItem['timestamp'] = date('H:i', $value['timestamp']);
+			$resumeItem['timestamp'] = $value['timestamp'];
 
 			// Добавление username-а и контактной информации
 			$userData = $this->account_model->getAccountData($value['user_id']);

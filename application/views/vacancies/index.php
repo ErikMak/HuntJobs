@@ -10,16 +10,18 @@
 		<p class="mb-0 ms-2">(<? echo $vacancies_count ?>)</p>
 	</div>
 	<div class="catalog-cards">
+<?php if($role == 2) : ?>
 		<div class="for-employers-card px-3 py-3">
 		    <div class="d-flex justify-content-between">
 	    		<div class="d-flex flex-column">
 	    			<b class="fw-semibold text-uppercase mb-2">работодателям</b>
 	    			<div class="d-flex justify-content-between">
-	    				<p class="mb-0">Разместите вакансию на сайте и находите сотрудников среди тех, кто хочет у вас работать. <a class="text-decoration-underline" href="#">Создать вакансию</a></p>
+	    				<p class="mb-0">Разместите вакансию на сайте и находите сотрудников среди тех, кто хочет у вас работать. <a class="text-decoration-underline" href="/create-vacancy">Создать вакансию</a></p>
 	    			</div>
 	    		</div>
 	    	</div>
 		</div>
+<?php endif; ?>
 <?php foreach ($vacancies as $key => $value): ?>
 		<div class="card">
 		  <div class="row g-0">

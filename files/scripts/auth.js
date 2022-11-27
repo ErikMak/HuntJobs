@@ -98,10 +98,10 @@ function signupAction() {
 
 	if(isFormValid) {
 		let userData = {
-			username: formHandle.querySelector('#signup-username').value,
-			role: formHandle.querySelector('#signup-role').value,
-			email: formHandle.querySelector('#signup-email').value,
-			pass: formHandle.querySelector('#signup-pass').value
+			username: formHandle.querySelector('#signup-username').value.trim(),
+			role: formHandle.querySelector('#signup-role').value.trim(),
+			email: formHandle.querySelector('#signup-email').value.trim(),
+			pass: formHandle.querySelector('#signup-pass').value.trim()
 		};
 
 		$.ajax({

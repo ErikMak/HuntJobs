@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Requests extends CI_Controller {
+class Requests extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('requests_model');
@@ -10,10 +10,7 @@ class Requests extends CI_Controller {
 	}
 
 	public function sendRequest() {
-		$this->load->library('session');
-
 		$vacancy_id = $this->input->post('vacancy_id');
-		define('USER_ID', $this->session->userdata('user_id'));
 
 		// Проверка соответствия роли
 		if($this->session->userdata('role') == 1) {

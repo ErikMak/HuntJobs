@@ -50,6 +50,13 @@
 .btn-success:focus {
   background-color: #14af51;
 }
+.btn-light {
+  background-color: #f3f3f3;
+}
+.btn-light:hover,
+.btn-light:focus {
+  background-color: #eeeeee;
+}
 .btn-danger,
 .btn-primary {
   font-weight: 400;
@@ -79,6 +86,16 @@
 .btn-danger:hover,
 .btn-danger:focus {
   background-color: #d52c31;
+}
+/* ERROR MESSAGES UNDER INPUTS */
+.error-msg {
+  color: #f3353a;
+}
+.error-msg.show {
+  visibility: visible;
+}
+.error-msg.hide {
+  visibility: hidden;
 }
 /* TOASTS */
 #toast-container > .toast {
@@ -164,11 +181,17 @@ header .header-item a.active {
   pointer-events: none;
   color: #17c75c;
 }
-header .header-item span.rounded-circle {
+header .header-item .notification-circle {
   top: 13%;
   left: 90%;
   background-color: #f3353a;
   border: 1px solid #2d3033;
+}
+header .header-item .notification-circle.show {
+  visibility: visible;
+}
+header .header-item .notification-circle.hide {
+  visibility: hidden;
 }
 header .slide-menu {
   display: none;
@@ -271,15 +294,6 @@ header .logo {
 }
 #login-section .login-card form label {
   font-size: 0.8em;
-}
-#login-section .login-card form .error-msg {
-  color: #f75347;
-}
-#login-section .login-card form .error-msg.show {
-  visibility: visible;
-}
-#login-section .login-card form .error-msg.hide {
-  visibility: hidden;
 }
 #login-section .login-card .form-select {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");

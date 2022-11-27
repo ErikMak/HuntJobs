@@ -5,11 +5,10 @@
 		<i class="mx-1 fst-normal">&#8226;</i>
 		<a>Профиль</a>
 	</div>
-	<!-- Vacancy Header -->
+	<!-- Header Card -->
 	<div class="main-header py-3 d-flex flex-column">
 		<h3 class="fw-semibold">Мой профиль</h3>
 	</div>
-	<!-- Vacancy Desc -->
 	<div class="profile-card px-4 py-3 mb-3">
 		<div class="row">
 			<div class="d-flex">
@@ -77,24 +76,25 @@
 		</div>
 	</div>
 	<div class="vacancies-control-table">
+<?php foreach ($vacancies as $key => $value): ?>
 		<div class="vacancy-control-card ps-4 pe-0 py-2 mb-3">
 			<div class="d-flex flex-column">
 				<small class="text-lowercase">номер</small>
-				<b>#1</b>
+				<b>#<? echo $value['id']; ?></b>
 			</div>
 			<div class="d-flex flex-column text-center">
 				<small class="text-lowercase">заголовок</small>
 				<span>
-					<a href="" class="text-nowrap text-decoration-underline">Web-программист</a>
+					<a href="/vacancies/view/<? echo $value['slug']; ?>" class="text-nowrap text-decoration-underline"><? echo $value['job']; ?></a>
 				</span>
 			</div>
 			<div class="d-flex flex-column text-center">
 				<small class="text-lowercase">откликов</small>
-				<b class="text-nowrap">3</b>
+				<b class="text-nowrap"><? echo $value['count']; ?></b>
 			</div>
 			<div class="d-flex flex-column text-center">
 				<small class="text-lowercase">создано</small>
-				<p class="text-nowrap mb-0">24.01.2022</p>
+				<p class="text-nowrap mb-0"><? echo $value['timestamp']; ?></p>
 			</div>
 			<div class="d-flex flex-column text-center">
 				<small class="text-lowercase">действие</small>
@@ -103,32 +103,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="vacancy-control-card ps-4 pe-0 py-2 mb-3">
-			<div class="d-flex flex-column">
-				<small class="text-lowercase">номер</small>
-				<b>#1</b>
-			</div>
-			<div class="d-flex flex-column text-center">
-				<small class="text-lowercase">заголовок</small>
-				<span>
-					<a href="" class="text-nowrap text-decoration-underline">Web-программист</a>
-				</span>
-			</div>
-			<div class="d-flex flex-column text-center">
-				<small class="text-lowercase">откликов</small>
-				<b class="text-nowrap">3</b>
-			</div>
-			<div class="d-flex flex-column text-center">
-				<small class="text-lowercase">создано</small>
-				<p class="text-nowrap mb-0">24.01.2022</p>
-			</div>
-			<div class="d-flex flex-column text-center">
-				<small class="text-lowercase">действие</small>
-				<span>
-					<a href="" class="text-nowrap delete-link text-decoration-underline">Удалить</a>
-				</span>
-			</div>
-		</div>
+<?php endforeach ?>
 	</div>
 <?php endif; ?>
 	<div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">

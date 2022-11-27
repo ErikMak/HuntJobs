@@ -37,6 +37,8 @@
 @btn-success:#17C75C;
 @btn-success-hover: #14AF51;
 @btn-dark: #2D3033;
+@btn-light: #F3F3F3;
+@btn-light-hover: #EEEEEE;
 // Containers
 @section-container: #FEFFFF;
 @header: #2D3033;
@@ -51,6 +53,7 @@
 // Other
 @yellow-bg: #FEF8E5;
 @links: #0D6EFD;
+@error-msg: #F75347;
 @notification-circle: #F3353A;
 
 *::selection {
@@ -82,6 +85,14 @@
 	background-color: @btn-success-hover;
 }
 
+.btn-light {
+	background-color: @btn-light;
+}
+
+.btn-light:hover, .btn-light:focus {
+	background-color: @btn-light-hover;
+}
+
 .btn-danger, .btn-primary {
 	font-weight: 400;
 	font-size: 0.8em;
@@ -109,6 +120,17 @@
 }
 .btn-danger:hover, .btn-danger:focus  {
 	background-color: @btn-danger-hover;
+}
+
+/* ERROR MESSAGES UNDER INPUTS */
+.error-msg {
+	color: @red-text;
+}
+.error-msg.show {
+	visibility: visible;
+}
+.error-msg.hide {
+	visibility: hidden;
 }
 
 /* TOASTS */
@@ -202,11 +224,17 @@ header {
 			pointer-events: none;
 			color: @green-text;
 		}
-		span.rounded-circle {
+		.notification-circle {
 			top:13%;
 			left: 90%;
 			background-color: @notification-circle;
 			border: 1px solid @header;
+		}
+		.notification-circle.show {
+			visibility: visible;
+		}
+		.notification-circle.hide {
+			visibility: hidden;
 		}
 	}
 
@@ -317,15 +345,6 @@ header {
 			}
 			label {
 				font-size: 0.8em;
-			}
-			.error-msg {
-				color: #f75347;
-			}
-			.error-msg.show {
-				visibility: visible;
-			}
-			.error-msg.hide {
-				visibility: hidden;
 			}
 		}
 		.form-select {

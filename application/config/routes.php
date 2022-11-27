@@ -54,7 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['auth'] = 'auth';
+$route['vacancies/postVacancy'] = 'vacancies/postVacancy';
 $route['vacancies/(:num)'] = 'vacancies';
 $route['vacancies/(:any)'] = 'vacancies/view/$1';
+$route['create-vacancy'] = 'vacancies/create';
 $route['notifications'] = 'notifications';
 $route['account'] = 'account';
