@@ -1,0 +1,5 @@
+{
+    "require": {
+        "takielias/codeigniter-websocket": "^1.0"
+    }
+}

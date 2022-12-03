@@ -7,6 +7,7 @@ class Requests extends MY_Controller {
 		parent::__construct();
 		$this->load->model('requests_model');
 		$this->load->model('resumes_model');
+		$this->load->model('vacancies_model');
 	}
 
 	public function sendRequest() {
@@ -39,6 +40,11 @@ class Requests extends MY_Controller {
 				"status" => TRUE,
 				"message" => 'Резюме успешно отправлено.'
 			];
+
+			$author_id = $this->vacancies_model->getAuthorID($vacancy_id);
+			// Уведомление автору публикации
+			$this->client->send(json_encode(array('user_id' => USER_ID, 'recipient_id' => $author_id, 'message' => 'Новое уведомление!', 'type' => 'chat')));
+
 			echo json_encode($response);
 		} else {
 			$response = [

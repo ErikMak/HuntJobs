@@ -83,6 +83,10 @@ function setSuccessFor(form_group, msg) {
 	small.classList.add('hide');
 }
 
+function hideErrorCard(card) {
+	card.classList.add('none'); 
+}
+
 function signupAction() {
 	const formHandle = document.querySelector('#signup');
 
@@ -120,9 +124,10 @@ function signupAction() {
 					bootstrap.Tab.getInstance(triggerEl).show();
 				} else {
 					const error_card = document.querySelector('#error-card');
-
 					error_card.classList.remove('none');
 					error_card.innerHTML = data['message'];
+
+					setTimeout(hideErrorCard, 3500, error_card);
 				}
 			}
 		});
@@ -153,6 +158,8 @@ function signinAction() {
 
 				error_card.classList.remove('none');
 				error_card.innerHTML = data['message'];
+
+				setTimeout(hideErrorCard, 3500, error_card);
 			}
 		}
 	});

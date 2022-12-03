@@ -22,9 +22,7 @@ class Auth extends CI_Controller {
 	}
 
 	public function signup() {
-		$username = $this->input->post('username');
 		$pass = $this->input->post('pass');
-		$role = $this->input->post('role');
 		$email = $this->input->post('email');
 
 		// Хэширование пароля
@@ -32,7 +30,14 @@ class Auth extends CI_Controller {
 		// Преобразование email к нижнему регистру
 		$email = strtolower($email);
 
-		if($this->auth_model->createAccount($username, $pass, $email, $role)) {
+		$userData = array(
+			'username' => $this->input->post('username'),
+			'password' => $pass,
+			'email' => $email,
+			'role' => $this->input->post('role')
+		);
+
+		if($this->auth_model->createAccount($userData)) {
 			$response = [
 				"status" => TRUE
 			];

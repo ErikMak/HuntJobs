@@ -807,6 +807,9 @@ footer a:hover {
     min-width: fit-content;
     max-width: 0 !important;
   }
+  header .slide-menu {
+    display: block;
+  }
   main .main-cards {
     grid-template-columns: 1fr 1fr;
   }
@@ -816,6 +819,9 @@ footer a:hover {
   footer .container {
     flex-direction: column;
     margin: 0;
+  }
+  .sm-aside {
+    display: block;
   }
 }
 @media only screen and (max-width: 991.98px) and (min-width: 768px) {
@@ -828,6 +834,9 @@ footer a:hover {
   }
   header nav span {
     margin-right: 0;
+  }
+  header .slide-menu {
+    display: block;
   }
   header .logo-item {
     min-width: fit-content;
@@ -842,6 +851,9 @@ footer a:hover {
   footer .container {
     flex-direction: column;
     margin: 0;
+  }
+  .sm-aside {
+    display: block;
   }
 }
 @media only screen and (max-width: 1199.98px) and (min-width: 992px) {

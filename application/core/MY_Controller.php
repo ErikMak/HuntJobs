@@ -4,12 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
 	protected $data = array();
+	protected $client;
 
 	public function __construct() {
 		parent::__construct();
 
 		$this->load->helper('url');
 		$this->load->library('session');
+
+		// WebSocket клиент
+		$this->client = new WebSocket\Client('ws://localhost:8282');
 
 		if(!$this->session->has_userdata('logged_in')) {
 			redirect('auth');

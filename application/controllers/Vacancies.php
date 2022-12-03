@@ -32,13 +32,13 @@ class Vacancies extends MY_Controller {
 					break;
 			}
 			$vacancies_count = $this->vacancies_model->getVacanciesCount($category);
-			$this->data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset, $category);
+			$this->data['vacancies'] = $this->vacancies_model->getVacancies(10, $offset, $category);
 
 		} else {
 			$vacancies_count = $this->vacancies_model->getVacanciesCount();
 			$this->data['link'] = 'Все вакансии';
 			$this->data['title'] = 'Доступные вакансии';
-			$this->data['vacancies'] = $this->vacancies_model->getVacancies(2, $offset);
+			$this->data['vacancies'] = $this->vacancies_model->getVacancies(10, $offset);
 		}
 
 
@@ -117,16 +117,20 @@ class Vacancies extends MY_Controller {
 	}
 
 	public function postVacancy() {
-		$header = $this->input->post('header');
-		$salary = $this->input->post('salary');
-		$category = $this->input->post('category');
-		$desc = $this->input->post('desc');
-
-		$this->vacancies_model->createVacancy(USER_ID, $header, $salary, $category, $desc);
+		$vacancyData = array(
+			'user_id' => USER_ID,
+			'job' => $this->input->post('header'),
+			'salary' => $this->input->post('salary'),
+			'category' => $this->input->post('category'),
+			'description' => $this->input->post('desc'),
+			'timestamp' => date("d.m.Y"),
+			'slug' => 'null'
+		);
+		$this->vacancies_model->createVacancy($vacancyData);
 
 		$response = [
 			"status" => TRUE,
-			"message" => 'Вакансия успешно создана!.'
+			"message" => 'Вакансия успешно создана!'
 		];
 		echo json_encode($response);
 	}

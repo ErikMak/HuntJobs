@@ -1,4 +1,4 @@
-			</section>
+		</section>
 	</div>
 	<?php $this->load->view('templates/sm-navbar'); ?>
 	<footer>
@@ -19,8 +19,22 @@
 			</div>
 		</div>
 	</footer>
+	<script>
+		function User(user_id, role, username) {
+			this.user_id = user_id;
+			this.role = role;
+			this.username = username;
+		}
+
+		let user_id = <? echo $user_id; ?>;
+		let role = <? echo $role; ?>;
+		let username = '<? echo $username ?>';
+
+		let currentUser = new User(user_id, role, username);
+	</script>
 	<script src="/files/toastr.min.js"></script> <!-- Toasts -->
 	<script src="/files/bootstrap.bundle.min.js"></script> <!--Bootstrap Bundle JS-->
+	<script src="/files/scripts/socket.js"></script> <!-- Web-socket -->
 	<script src="/files/scripts/main-script.js"></script>
 </body>
 </html>

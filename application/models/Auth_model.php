@@ -14,16 +14,9 @@ class Auth_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function createAccount($username, $pass, $email, $role) {
-		if(!$this->isAccountExist($email)) {
-			$data = array(
-				'username' => $username,
-				'password' => $pass,
-				'email' => $email,
-				'role' => $role
-			);
-
-			$this->db->insert('users', $data);
+	public function createAccount($userData) {
+		if(!$this->isAccountExist($userData['email'])) {
+			$this->db->insert('users', $userData);
 
 			return TRUE;
 		}

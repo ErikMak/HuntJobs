@@ -1,33 +1,81 @@
 function saveResume() {
 	const formHandle = document.querySelector('#resume');
 
-	let resumeData = {
-		full_name: formHandle.querySelector('#full-name').value,
-		age: formHandle.querySelector('#age').value,
-		experience: formHandle.querySelector('#experience').value,
-		education: formHandle.querySelector('#education').value,
-		requirements: formHandle.querySelector('#requirements').value
-	};
+	let isFullnameValid = checkResumeInput(formHandle, '#resume-full-name'),
+		isAgeValid = checkResumeInput(formHandle, '#resume-age'),
+		isExperienceValid = checkResumeInput(formHandle, '#resume-experience'),
+		isEducationValid = checkResumeInput(formHandle, '#resume-education'),
+		isRequirementsValid = checkResumeInput(formHandle, '#resume-requirements');
 
-	$.ajax({
-		url: '/account/sendResume',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			full_name: resumeData.full_name,
-			age: resumeData.age,
-			experience: resumeData.experience,
-			education: resumeData.education,
-			requirements: resumeData.requirements
-		}, 
-		success: function(data) {
-			if(data['status'] == true) {
-				$('#resumeModal').modal('hide');
+	let isFormValid = isFullnameValid &&
+		isAgeValid && 
+		isExperienceValid && 
+		isEducationValid && 
+		isRequirementsValid;
 
-				toastr.success(data['message']);
+	if(isFormValid) {
+		let resumeData = {
+			full_name: formHandle.querySelector('#resume-full-name').value.trim(),
+			age: formHandle.querySelector('#resume-age').value.trim(),
+			experience: formHandle.querySelector('#resume-experience').value.trim(),
+			education: formHandle.querySelector('#resume-education').value.trim(),
+			requirements: formHandle.querySelector('#resume-requirements').value.trim()
+		};
+
+		$.ajax({
+			url: '/account/sendResume',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				full_name: resumeData.full_name,
+				age: resumeData.age,
+				experience: resumeData.experience,
+				education: resumeData.education,
+				requirements: resumeData.requirements
+			}, 
+			success: function(data) {
+				if(data['status'] == true) {
+					$('#resumeModal').modal('hide');
+
+					toastr.success(data['message']);
+				}
 			}
-		}
-	});
+		});
+	}
+}
+
+function saveContacts() {
+	const formHandle = document.querySelector('#contacts');
+
+	let isPhoneValid = checkContactsPhone(formHandle),
+		isEmailValid = checkContactsEmail(formHandle);
+
+	let isFormValid = isPhoneValid &&
+		isEmailValid;
+
+	if(isFormValid) {
+		let contactsData = {
+			phone: formHandle.querySelector('#contacts-phone').value.trim(),
+			email: formHandle.querySelector('#contacts-email').value.trim(),
+		};
+
+		$.ajax({
+			url: '/account/sendContacts',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				phone: contactsData.phone,
+				email: contactsData.email
+			}, 
+			success: function(data) {
+				if(data['status'] == true) {
+					$('#contactsModal').modal('hide');
+
+					toastr.success(data['message']);
+				}
+			}
+		});
+	}
 }
 
 function sendRequest(button) {
@@ -48,6 +96,61 @@ function sendRequest(button) {
 			}
 		}
 	});
+}
+
+function checkContactsPhone(form) {
+	let valid = false;
+
+	const input = form.querySelector('#contacts-phone');
+	const value = input.value.trim();
+
+	const rv_phone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+
+	if(value == '') {
+		setErrorFor(input.parentElement, 'Заполните данное поле!');
+	} else if (!rv_phone.test(value)) {
+		setErrorFor(input.parentElement, 'Некорректный номер телефона!');
+	} else {
+		valid = true;
+		setSuccessFor(input.parentElement);
+	}
+	return valid;
+}
+
+function checkContactsEmail(form) {
+	let valid = false;
+
+	const input = form.querySelector('#contacts-email');
+	const value = input.value.trim();
+
+	const rv_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+	if(value == '') {
+		setErrorFor(input.parentElement, 'Заполните данное поле!');
+	} else if (!rv_email.test(value)) {
+		setErrorFor(input.parentElement, 'Некорректный E-mail!');
+	} else {
+		valid = true;
+		setSuccessFor(input.parentElement);
+	}
+	return valid;
+}
+
+function checkResumeInput(form, id) {
+	let valid = false;
+
+	const input = form.querySelector(id);
+	const value = input.value.trim();
+
+	const rv_header = /^[a-яёА-ЯЁA-Za-z0-9 -"«»]+$/;
+
+	if(value == '') {
+		setErrorFor(input.parentElement, 'Заполните данное поле!');
+	} else {
+		valid = true;
+		setSuccessFor(input.parentElement);
+	}
+	return valid;
 }
 
 function checkVacancyHeader(form) {
@@ -181,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			sm_aside.classList.add('show');
 			this.classList.add('open');
 		}
-
 	});
 
 	const sidebar_categories = document.querySelectorAll('.sidebar-category');
@@ -217,12 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	request_btns.forEach(function (btn) {
 		btn.addEventListener('click', function () {
 			sendRequest(this);
-
-	        // socket.send(JSON.stringify(client));
-	        // client.message = 'test';
-	        // client.type = 'chat';
-	        // client.recipient_id = 4;
-	        // socket.send(JSON.stringify(client));
 		});
 	});
 
@@ -231,6 +327,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	  const save_btn = document.getElementById('save-resume');
 	  save_btn.addEventListener('click', function() {
 	  	saveResume();
+	  });
+	}
+
+	const contacts_modal = document.querySelector('#contactsModal');
+	if (typeof(contacts_modal) != 'undefined' && contacts_modal != null) {
+	  const save_btn = document.getElementById('save-contacts');
+	  save_btn.addEventListener('click', function() {
+	  	saveContacts();
 	  });
 	}
 

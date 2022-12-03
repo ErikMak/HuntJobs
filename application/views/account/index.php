@@ -33,7 +33,7 @@
 				<span class="me-2"><i class="far fa-phone-alt"></i></span>
 				<p class="mb-0 fw-semibold">Контактная информация</p>
 			</div>
-			<a class="text-decoration-underline" href="#">Изменить</a>
+			<a class="text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#contactsModal">Изменить</a>
 		</div>
 		<small class="mb-1">Телефон</small>
 		<p><? echo $phone; ?></p>
@@ -64,6 +64,48 @@
 			<a class="text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">Создать</a>
 		</div>
 <?php endif; ?>
+	</div>
+	<div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header px-4">
+	        <h3 class="modal-title fs-5" id="resumeModalLabel">Резюме</h3>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body px-4">
+	        <form id="resume">
+			  <div class="mb-3">
+			    <div class="form-text">ФИО</div>
+			    <input id="resume-full-name" type="text" class="form-control py-1 px-2">
+			    <small class="error-msg hide ms-2">error</small>
+			  </div>
+			  <div class="mb-3">
+			    <div class="form-text">Возраст</div>
+			    <input id="resume-age" type="text" class="form-control py-1 px-2">
+			    <small class="error-msg hide ms-2">error</small>
+			  </div>
+			  <div class="mb-3">
+			    <div class="form-text">Опыт работы</div>
+			    <input id="resume-experience" type="text" class="form-control py-1 px-2">
+			    <small class="error-msg hide ms-2">error</small>
+			  </div>
+			  <div class="mb-3">
+			    <div class="form-text">Образование</div>
+			    <input id="resume-education" type="text" class="form-control py-1 px-2">
+			    <small class="error-msg hide ms-2">error</small>
+			  </div>
+			  <div>
+				<div class="form-text">Требования</div>
+				<textarea id="resume-requirements" rows="3" class="form-control py-1 px-2" ></textarea>
+				<small class="error-msg hide ms-2">error</small>
+			  </div>
+			</form>
+	      </div>
+	      <div class="modal-footer px-4">
+	        <button type="button" id="save-resume" class="btn btn-primary py-0 px-3 text-nowrap">Сохранить</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 <?php else : ?>
 	<div class="profile-fill-card px-4 pt-3 pb-2 mb-3">
@@ -106,39 +148,30 @@
 <?php endforeach ?>
 	</div>
 <?php endif; ?>
-	<div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+	<div class="modal fade" id="contactsModal" tabindex="-1" aria-labelledby="contactsModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header px-4">
-	        <h3 class="modal-title fs-5" id="resumeModalLabel">Резюме</h3>
+	        <h3 class="modal-title fs-5" id="contactsModalLabel">Контактная информация</h3>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body px-4">
-	        <form id="resume">
-			  <div class="mb-3">
-			    <div class="form-text">ФИО</div>
-			    <input id="full-name" type="text" class="form-control py-1 px-2">
+	        <form id="contacts">
+			  <div class="mb-1">
+			    <div class="form-text">Телефон</div>
+			    <input id="contacts-phone" type="text" class="form-control py-1 px-2">
+			    <small class="error-msg hide ms-2">error</small>
 			  </div>
-			  <div class="mb-3">
-			    <div class="form-text">Возраст</div>
-			    <input id="age" type="text" class="form-control py-1 px-2">
-			  </div>
-			  <div class="mb-3">
-			    <div class="form-text">Опыт работы</div>
-			    <input id="experience" type="text" class="form-control py-1 px-2">
-			  </div>
-			  <div class="mb-3">
-			    <div class="form-text">Образование</div>
-			    <input id="education" type="text" class="form-control py-1 px-2">
-			  </div>
-			  <div>
-				<div class="form-text">Требования</div>
-				<textarea id="requirements" rows="3" class="form-control py-1 px-2" ></textarea>
+			  <div class="mb-1">
+			    <div class="form-text">E-mail</div>
+			    <input id="contacts-email" type="email" class="form-control py-1 px-2">
+			    <div class="form-text">Новый E-mail адрес будет использоваться при авторизации</div>
+			    <small class="error-msg hide ms-2">error</small>
 			  </div>
 			</form>
 	      </div>
 	      <div class="modal-footer px-4">
-	        <button type="button" id="save-resume" class="btn btn-primary py-0 px-3 text-nowrap">Сохранить</button>
+	        <button type="button" id="save-contacts" class="btn btn-primary py-0 px-3 text-nowrap">Сохранить</button>
 	      </div>
 	    </div>
 	  </div>

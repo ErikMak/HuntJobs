@@ -42,7 +42,7 @@
 				<div class="mb-1">
 					<div class="form-label">Описание</div>
 					<textarea id="requirements" rows="3" class="form-control py-1 px-2" ></textarea>
-					<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+					<div class="form-text">Краткое описание предлагаемой работы.</div>
 					<small class="error-msg hide ms-2">error</small>
 			  	</div>
 				<button type="button" id="btn-create" class="btn btn-primary py-0 px-4 text-nowrap">Создать</button>

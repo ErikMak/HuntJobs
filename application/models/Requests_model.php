@@ -18,7 +18,8 @@ class Requests_model extends CI_Model {
 		$data = array(
 			'vacancy_id' => $vacancy_id,
 			'user_id' => $user_id,
-			'timestamp' => date("H:i")
+			'timestamp' => date("H:i"),
+			'notify' => TRUE
 		);
 
 		$this->db->insert('requests', $data);
