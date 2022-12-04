@@ -2,7 +2,7 @@
 	<div class="container-xl themed-container header-container">
 		<div class="row justify-content-between align-items-center">
 			<div class="col header-item logo-item pe-0"> <!-- Logo -->
-				<a><img src="/files/img/logo.png" class="logo"></a>
+				<a href="/main"><img src="/files/img/logo.png" class="logo"></a>
 			</div>
 			<nav class="col py-1">
 				<div class="row align-items-center">

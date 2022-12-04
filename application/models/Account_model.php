@@ -19,4 +19,10 @@ class Account_model extends CI_Model {
 
 		return $query->row_array();
 	}
+
+	public function changeContacts($user_id, $contactsData) {
+		$this->db->set($contactsData)
+			->where('id', $user_id)
+			->update('users');
+	}
 }

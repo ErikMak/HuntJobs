@@ -71,6 +71,8 @@ function saveContacts() {
 				if(data['status'] == true) {
 					$('#contactsModal').modal('hide');
 
+					document.querySelector('.em').innerHTML = contactsData.email;
+					document.querySelector('.pn').innerHTML = contactsData.phone;
 					toastr.success(data['message']);
 				}
 			}
@@ -321,6 +323,38 @@ document.addEventListener('DOMContentLoaded', function() {
 			sendRequest(this);
 		});
 	});
+
+	const contacts_modal_link = document.querySelector('.contacts-mdl');
+	if (typeof(contacts_modal_link) != 'undefined' && contacts_modal_link != null) {
+	  contacts_modal_link.addEventListener('click', function() {
+	  	const formHandle = document.querySelector('#contacts');
+
+	  	const phoneInput = formHandle.querySelector('#contacts-phone');
+	  	const emailInput = formHandle.querySelector('#contacts-email');
+
+	  	phoneInput.value = document.querySelector('.pn').innerHTML;
+	  	emailInput.value = document.querySelector('.em').innerHTML;
+	  });
+	}
+
+	const resume_modal_link = document.querySelector('.resume-mdl');
+	if (typeof(resume_modal_link) != 'undefined' && resume_modal_link != null) {
+	  resume_modal_link.addEventListener('click', function() {
+	  	const formHandle = document.querySelector('#resume');
+
+		const fullnameInput = formHandle.querySelector('#resume-full-name'),
+		ageInput = formHandle.querySelector('#resume-age'),
+		expInput = formHandle.querySelector('#resume-experience'),
+		eduInput = formHandle.querySelector('#resume-education'),
+		reqInput = formHandle.querySelector('#resume-requirements');
+
+	  	fullnameInput.value = document.querySelector('.fn').innerHTML;
+	  	ageInput.value = document.querySelector('.age').innerHTML;
+	  	expInput.value = document.querySelector('.exp').innerHTML;
+	  	eduInput.value = document.querySelector('.edu').innerHTML;
+	  	reqInput.value = document.querySelector('.req').innerHTML;
+	  });
+	}
 
 	const resume_modal = document.querySelector('#resumeModal');
 	if (typeof(resume_modal) != 'undefined' && resume_modal != null) {

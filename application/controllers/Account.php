@@ -46,9 +46,22 @@ class Account extends MY_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function sendContacts() {
+		$contactsData = array(
+			'email' => $this->input->post('email'),
+			'phone' => $this->input->post('phone')
+		);
+
+		$this->account_model->changeContacts(USER_ID, $contactsData);
+		$response = [
+			"status" => TRUE,
+			"message" => 'Контактная информация обновлена.'
+		];
+		echo json_encode($response);
+	}
+
 	public function sendResume() {
 		$resumeData = array(
-			'user_id' => USER_ID,
 			'full_name' => $this->input->post('full_name'),
 			'age' => $this->input->post('age'),
 			'exp' => $this->input->post('experience'),
@@ -66,7 +79,7 @@ class Account extends MY_Controller {
 			$this->resumes_model->changeResume(USER_ID, $resumeData);
 			$response = [
 				"status" => TRUE,
-				"message" => 'Резюме было изменено.'
+				"message" => 'Резюме обновлено.'
 			];
 		}
 		echo json_encode($response);

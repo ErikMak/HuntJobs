@@ -463,6 +463,10 @@ main .vacancy-control-card .delete-link {
 main .vacancy-control-card .delete-link:hover {
   color: #d52c31;
 }
+main .vacancy-control-card .header-link {
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
 main .profile-fill-card {
   background-color: #2d3033;
   color: white;

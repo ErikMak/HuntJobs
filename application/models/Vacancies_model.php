@@ -7,11 +7,20 @@ class Vacancies_model extends CI_Model {
 
 	public function getVacancies($row_count, $offset, $category = FALSE) {
 		if($category === FALSE) {
-			$query = $this->db->get('vacancies', $row_count, $offset);
+			$query = $this->db->select('*')->from('vacancies')
+				->order_by('timestamp', 'DESC')
+				->limit($row_count, $offset)
+			->get();
+
 			return $query->result_array();
 		}
 
-		$query = $this->db->get_where('vacancies', array('category' => $category), $row_count, $offset);
+		$query = $this->db->select('*')->from('vacancies')
+			->where('category', $category)
+			->order_by('timestamp', 'DESC')
+			->limit($row_count, $offset)
+		->get();
+
 		return $query->result_array();
 	}
 

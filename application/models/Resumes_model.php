@@ -20,10 +20,13 @@ class Resumes_model extends CI_Model {
 	}
 
 	public function createResume($user_id, $resumeData) {
+		$resumeData['user_id'] = $user_id;
 		$this->db->insert('resumes', $resumeData);
 	}
 
 	public function changeResume($user_id, $resumeData) {
-		$this->db->replace('resumes', $resumeData);
+		$this->db->set($resumeData)
+			->where('user_id', $user_id)
+			->update('resumes');
 	}
 }

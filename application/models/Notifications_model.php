@@ -16,13 +16,17 @@ class Notifications_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function getNotificationsCount($user_id) {
+	public function isNotificationsExist($user_id) {
 		$query = $this->db->select('requests.vacancy_id')
 			->from('requests')
 			->join('vacancies', 'requests.vacancy_id = vacancies.id')
 			->where('vacancies.user_id', $user_id)
 			->where('notify', TRUE)
 		->get();
-		return $query->num_rows();
+
+		if($query->num_rows() > 0) {
+			return TRUE;
+		} 
+		return FALSE;
 	}
 }

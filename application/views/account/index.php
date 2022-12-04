@@ -33,12 +33,12 @@
 				<span class="me-2"><i class="far fa-phone-alt"></i></span>
 				<p class="mb-0 fw-semibold">Контактная информация</p>
 			</div>
-			<a class="text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#contactsModal">Изменить</a>
+			<a class="contacts-mdl text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#contactsModal">Изменить</a>
 		</div>
 		<small class="mb-1">Телефон</small>
-		<p><? echo $phone; ?></p>
+		<p class="pn"><? echo $phone; ?></p>
 		<small class="mb-1">E-mail</small>
-		<p class="mb-2"><? echo $email; ?></p>
+		<p class="em mb-2"><? echo $email; ?></p>
 	</div>
 <?php if($role == 1) : ?>
 	<div class="profile-card px-4 pt-3 pb-2 mb-3">
@@ -48,18 +48,18 @@
 				<p class="mb-0 fw-semibold">Резюме</p>
 			</div>
 <?php if(!is_null($resume)) : ?>
-			<a class="text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">Изменить</a>
+			<a class="resume-mdl text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">Изменить</a>
 		</div>
 			<small class="mb-1">ФИО</small>
-			<p><? echo $resume['full_name']; ?></p>
+			<p class="fn"><? echo $resume['full_name']; ?></p>
 			<small class="mb-1">Возраст</small>
-			<p><? echo $resume['age']; ?></p>
+			<p class="age"><? echo $resume['age']; ?></p>
 			<small class="mb-1">Опыт работы</small>
-			<p><? echo $resume['exp']; ?></p>
+			<p class="exp"><? echo $resume['exp']; ?></p>
 			<small class="mb-1">Образование</small>
-			<p><? echo $resume['education']; ?></p>
+			<p class="edu"><? echo $resume['education']; ?></p>
 			<small class="mb-1">Требования</small>
-			<pre class="mb-2"><? echo $resume['requirements']; ?></pre>
+			<pre class="req mb-2"><? echo $resume['requirements']; ?></pre>
 <?php else : ?>
 			<a class="text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">Создать</a>
 		</div>
@@ -114,17 +114,17 @@
 				<span class="me-2"><i class="far fa-briefcase"></i></span>
 				<p class="mb-0 fw-semibold">Мои вакансии</p>
 			</div>
-			<a id="" style="color: #FBF6F6;" class="text-decoration-underline" href="#"><i class="fas fa-chevron-down"></i></a>
+			<a data-bs-toggle="collapse" href="#vacanciesTableCollapse" aria-expanded="false" aria-controls="vacanciesTableCollapse" style="color: #FBF6F6;" class="text-decoration-underline" href="#"><i class="fas fa-chevron-down"></i></a>
 		</div>
 	</div>
-	<div class="vacancies-control-table">
+	<div class="collapse vacancies-control-table" id="vacanciesTableCollapse">
 <?php foreach ($vacancies as $key => $value): ?>
 		<div class="vacancy-control-card ps-4 pe-0 py-2 mb-3">
 			<div class="d-flex flex-column">
 				<small class="text-lowercase">номер</small>
 				<b>#<? echo $value['id']; ?></b>
 			</div>
-			<div class="d-flex flex-column text-center">
+			<div class="d-flex flex-column text-center header-link">
 				<small class="text-lowercase">заголовок</small>
 				<span>
 					<a href="/vacancies/view/<? echo $value['slug']; ?>" class="text-nowrap text-decoration-underline"><? echo $value['job']; ?></a>
