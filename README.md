@@ -1,4 +1,4 @@
-![Логотип](https://github.com/ErikMak/HuntJobs/files/img/label.jpg)
+![Логотип](https://github.com/ErikMak/HuntJobs/blob/master/files/img/label.jpg)
 # HuntJobs
 Online recruiting platform on CodeIgniter 3.1.13
 
