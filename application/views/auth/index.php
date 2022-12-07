@@ -36,13 +36,13 @@
 				  <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab" tabindex="0">
 				  	<form id="signin">
 					  <div class="mb-4 position-relative">
-						<span class="position-absolute">
+						<span class="icon position-absolute">
 							<i class="fas fa-envelope"></i>
 						</span>
 					    <input id="signin-email" type="email" class="form-control" placeholder="E-mail">
 					  </div>
 					  <div class="mb-4 position-relative">
-						<span class="position-absolute">
+					  	<span class="icon position-absolute">
 							<i class="fas fa-lock-alt"></i>
 						</span>
 					    <input id="signin-pass" type="password" class="form-control" placeholder="Пароль">
@@ -58,14 +58,14 @@
 				  <div class="tab-pane fade" id="pills-reg" role="tabpanel" aria-labelledby="pills-rerg-tab" tabindex="0">
 				  	<form id="signup">
 				  	  <div class="mb-1 position-relative">
-						<span class="position-absolute">
+						<span class="icon position-absolute">
 							<i class="fa fa-user"></i>
 						</span>
 					    <input id="signup-username" type="text" class="form-control" placeholder="Имя пользователя">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
-						<span class="position-absolute">
+						<span class="icon position-absolute">
 							<i class="far fa-tools"></i>
 						</span>
 					    <select id="signup-role" class="form-select">
@@ -75,21 +75,24 @@
 						<small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
-						<span class="position-absolute">
+						<span class="icon position-absolute">
 							<i class="fas fa-envelope"></i>
 						</span>
 					    <input id="signup-email" type="email" class="form-control" placeholder="E-mail">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
-						<span class="position-absolute">
+						<span class="icon position-absolute">
 							<i class="fas fa-lock-alt"></i>
 						</span>
-					    <input id="signup-pass" type="password" class="form-control" placeholder="Пароль">
+						<span class="tip position-absolute" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Пароль состоит из не менее 6 символов;<br>Содержит латинские буквы разного регистра;<br>Содержит хотя бы одно число;">
+							<i class="fas fa-info-circle"></i>
+						</span>
+					    <input id="signup-pass" type="password" class="form-control with-tip" placeholder="Пароль">
 					    <small class="error-msg hide ms-2">error</small>
 					  </div>
 					  <div class="mb-1 position-relative">
-						<span class="position-absolute">
+						<span class="icon position-absolute">
 							<i class="fas fa-lock-alt"></i>
 						</span>
 					    <input id="signup-confirm-pass" type="password" class="form-control" placeholder="Повтор пароля">

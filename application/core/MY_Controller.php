@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller {
 
 		$this->load->helper('url');
 		$this->load->library('session');
+		$this->load->model('notifications_model');
 
 		// WebSocket клиент
 		$this->client = new WebSocket\Client('ws://localhost:8282');
@@ -24,5 +25,8 @@ class MY_Controller extends CI_Controller {
 		$this->data['user_id'] = USER_ID;
 		$this->data['username'] = $this->session->userdata('username');
 		$this->data['role'] = $this->session->userdata('role');
+
+		// Уведомления
+		$this->data['is_notifications_exist'] = $this->notifications_model->isNotificationsExist(USER_ID);
 	}
 }

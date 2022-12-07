@@ -51,6 +51,7 @@
 @red-text: #F3353A;
 @red-text-hover: #D52C31;
 // Other
+@salary-bg: #789CEB;
 @yellow-bg: #FEF8E5;
 @links: #0D6EFD;
 @error-msg: #F75347;
@@ -224,17 +225,17 @@ header {
 			pointer-events: none;
 			color: @green-text;
 		}
-		.notification-circle {
-			top:13%;
-			left: 90%;
-			background-color: @notification-circle;
-			border: 1px solid @header;
-		}
-		.notification-circle.show {
-			visibility: visible;
-		}
-		.notification-circle.hide {
-			visibility: hidden;
+		a:not(.active) {
+			.notification-circle {
+				top:13%;
+				left: 90%;
+				background-color: @notification-circle;
+				border: 1px solid @header;
+				visibility: hidden;
+			}
+			.notification-circle.show {
+				visibility: visible;
+			}
 		}
 	}
 
@@ -332,13 +333,22 @@ header {
 				border: none;
 				padding-left: 2.3em;
 			}
+			input.with-tip {
+				padding-right: 2.3em;
+			}
 			input, select {
 				color: @white-text;
 			}
 			span {
-				color: #aaaaaa;
 				top: 6px;
+			}
+			span.icon {
+				color: #aaaaaa;
 				left: 11px;
+			}
+			span.tip {
+				color: @white-text;
+				right: 11px;
 			}
 			input::placeholder {
 				color: #aaaaaa;
@@ -471,6 +481,14 @@ main {
 			}
 			.card-body p {
 				font-size: 0.8em;
+			}
+			.card-body span {
+				width: fit-content;
+				background-color: @salary-bg;
+				color: @white-text;
+				padding-left:7px;
+				padding-right:7px;
+				padding-bottom:1px;
 			}
 			.description {
 				display: -webkit-box;
@@ -727,6 +745,14 @@ aside {
 		list-style: none;
 		width: 70px;
 		height: 70px;
+	}
+	li:not(.active) {
+		.notification-circle {
+			top:36%;
+			left: 85%;
+			background-color: @notification-circle;
+			border: 1px solid @header;
+		}
 	}
 	li.active .icon {
 		transform: translateY(-35px);

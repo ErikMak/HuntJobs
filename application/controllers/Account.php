@@ -43,7 +43,7 @@ class Account extends MY_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('account/index', $this->data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $this->data);
 	}
 
 	public function sendContacts() {

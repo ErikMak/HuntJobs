@@ -1,6 +1,6 @@
 		</section>
 	</div>
-	<?php $this->load->view('templates/sm-navbar'); ?>
+	<?php $this->load->view('templates/sm-navbar', $is_notifications_exist); ?>
 	<footer>
 		<div class="container header-container d-flex justify-content-between pt-4">
 			<div class="developers pb-4">

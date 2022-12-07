@@ -59,7 +59,7 @@ class Vacancies extends MY_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('vacancies/index', $this->data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $this->data);
 	}
 
 	public function view($slug = NULL) {
@@ -101,7 +101,7 @@ class Vacancies extends MY_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('vacancies/view', $this->data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $this->data);
 	}
 
 	public function create() {
@@ -113,7 +113,7 @@ class Vacancies extends MY_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('vacancies/create', $this->data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $this->data);
 	}
 
 	public function postVacancy() {

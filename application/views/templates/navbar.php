@@ -20,7 +20,7 @@
 						<a class="navbar-link" href="/notifications">
 							<span style="font-size:20px;" class="position-relative">
 							<i class="far fa-bell"></i>
-							<span class="notification-circle show position-absolute translate-middle p-1 rounded-circle">
+							<span class="notification-circle <? echo ($is_notifications_exist) ? "show" : ""; ?> position-absolute translate-middle p-1 rounded-circle">
 						  	</span>
 							</span>
 						</a>
@@ -64,13 +64,13 @@
 				    	</span>
 				    	<a class="sidebar-link ms-1" href="/vacancies?category=web_programist">WEB-программист</a>
 				  	</li>
-				  	<li class="sidebar-item ">
+				  	<li class="sidebar-item">
 				  		<span>
 				    	<i class="fas fa-hashtag"></i>
 				    	</span>
 				    	<a class="sidebar-link ms-1" href="/vacancies?category=sistemnyi_administrator">Систем. администратор</a>
 				  	</li>
-				  	<li class="sidebar-item ">
+				  	<li class="sidebar-item">
 				  		<span>
 				    	<i class="fas fa-hashtag"></i>
 				    	</span>

@@ -28,7 +28,8 @@
 		      <div class="card-body h-100 d-grid align-content-between">
 		      	<div class="d-flex flex-column">
 			      	<a href="vacancies/view/<? echo $value['slug']; ?>" class="card-link text-wrap"><? echo $value['job']; ?></a>
-			      	<small class="my-2">Санкт-Петербург&#32;&#8226;&#32;<? echo $value['timestamp']; ?></small>
+			      	<span class="my-2"><b class="fw-semibold"><? echo number_format($value['salary'], 0, '.', ' ');?> &#8381;</b></span>
+			      	<small class="mb-2">Санкт-Петербург&#32;&#8226;&#32;<? echo $value['timestamp']; ?></small>
 			      	<div class="description">
 				      	<p class="mb-0"><? echo $value['description']; ?></p>
 					</div>

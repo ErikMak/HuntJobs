@@ -14,7 +14,7 @@
 	<link href="/files/style.css" rel="stylesheet">
 </head>
 <body>
-<?php $this->load->view('templates/navbar'); ?>
+<?php $this->load->view('templates/navbar', $is_notifications_exist); ?>
 <div class="container-xl themed-container section-container">
 	<section class="row">
 		<!-- Sidebar -->

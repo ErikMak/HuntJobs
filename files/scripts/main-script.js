@@ -44,6 +44,28 @@ function saveResume() {
 	}
 }
 
+function deleteNotification(link) {
+	const notification = link.parentNode.parentNode;
+	const notification_id = link.id;
+	const countLabel = document.querySelector('.nt-count');
+
+	$.ajax({
+		url: '/notifications/delete',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			id: notification_id
+		}, 
+		success: function(data) {
+			if(data['status'] == true) {
+				countLabel.innerHTML = '('+data['count']+')';
+
+				notification.style.display = "none";
+			}
+		}
+	});
+}
+
 function saveContacts() {
 	const formHandle = document.querySelector('#contacts');
 
@@ -324,9 +346,19 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
+	const del_notification_links = document.querySelectorAll('.del-notification-link');
+	del_notification_links.forEach(function (link) {
+		link.addEventListener('click', function(e) {
+			e.preventDefault();
+
+			deleteNotification(link);
+		});
+	});
+
 	const contacts_modal_link = document.querySelector('.contacts-mdl');
 	if (typeof(contacts_modal_link) != 'undefined' && contacts_modal_link != null) {
-	  contacts_modal_link.addEventListener('click', function() {
+	  contacts_modal_link.addEventListener('click', function(e) {
+	  	e.preventDefault();
 	  	const formHandle = document.querySelector('#contacts');
 
 	  	const phoneInput = formHandle.querySelector('#contacts-phone');
@@ -339,7 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	const resume_modal_link = document.querySelector('.resume-mdl');
 	if (typeof(resume_modal_link) != 'undefined' && resume_modal_link != null) {
-	  resume_modal_link.addEventListener('click', function() {
+	  resume_modal_link.addEventListener('click', function(e) {
+	  	e.preventDefault();
 	  	const formHandle = document.querySelector('#resume');
 
 		const fullnameInput = formHandle.querySelector('#resume-full-name'),
@@ -359,7 +392,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	const resume_modal = document.querySelector('#resumeModal');
 	if (typeof(resume_modal) != 'undefined' && resume_modal != null) {
 	  const save_btn = document.getElementById('save-resume');
-	  save_btn.addEventListener('click', function() {
+	  save_btn.addEventListener('click', function(e) {
+	  	e.preventDefault();
 	  	saveResume();
 	  });
 	}
@@ -367,7 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	const contacts_modal = document.querySelector('#contactsModal');
 	if (typeof(contacts_modal) != 'undefined' && contacts_modal != null) {
 	  const save_btn = document.getElementById('save-contacts');
-	  save_btn.addEventListener('click', function() {
+	  save_btn.addEventListener('click', function(e) {
+	  	e.preventDefault();
 	  	saveContacts();
 	  });
 	}
@@ -412,7 +447,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 		const create_vacancy_btn = document.getElementById('btn-create');
-		create_vacancy_btn.addEventListener('click', function() {
+		create_vacancy_btn.addEventListener('click', function(e) {
+			e.preventDefault();
 			createVacancyAction(create_vacancy_form);
 		});
 	}

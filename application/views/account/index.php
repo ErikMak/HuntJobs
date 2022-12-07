@@ -141,11 +141,27 @@
 			<div class="d-flex flex-column text-center">
 				<small class="text-lowercase">действие</small>
 				<span>
-					<a href="" class="text-nowrap delete-link text-decoration-underline">Удалить</a>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#delVacancyModal" class="text-nowrap delete-link text-decoration-underline">Удалить</a>
 				</span>
 			</div>
 		</div>
 <?php endforeach ?>
+	</div>
+	<div class="modal fade" id="delVacancyModal" tabindex="-1" aria-labelledby="delVacancyModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header px-4">
+	        <h3 class="modal-title fs-5" id="delVacancyModalLabel">Удалить вакансию</h3>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body px-4">
+	      	<p>Вы действительно хотите удалить эту вакансию? Отклики пользователей будут утеряны!</p>
+	      </div>
+	      <div class="modal-footer px-4">
+	        <button type="button" id="delete-vacancy" class="btn btn-danger py-0 px-3 text-nowrap">Удалить</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 <?php endif; ?>
 	<div class="modal fade" id="contactsModal" tabindex="-1" aria-labelledby="contactsModalLabel" aria-hidden="true">

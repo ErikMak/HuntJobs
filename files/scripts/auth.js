@@ -1,3 +1,10 @@
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 function checkEmail(form) {
 	let valid = false;
 
@@ -163,10 +170,27 @@ function signinAction() {
 			}
 		}
 	});
+
+	// Сохранить данные для входа в куки
+	document.cookie = "login=" + userData.email + ";expires=Tue, 1 Jan 2033 00:00:00 GMT";
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
+	let login = getCookie('login');
+
+	if(login != undefined) {
+		const formHandle = document.querySelector('#signin');
+
+		const emailInput = formHandle.querySelector('#signin-email');
+		emailInput.value = login;
+	}
+
+	let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	  return new bootstrap.Tooltip(tooltipTriggerEl)
+	});
+	
 	const signin_btn = document.querySelector('#signin-btn');
 	signin_btn.addEventListener('click', e => {
 		e.preventDefault();

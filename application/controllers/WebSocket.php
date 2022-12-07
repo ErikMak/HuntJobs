@@ -21,12 +21,7 @@ class WebSocket extends CI_Controller
         return (!empty($datas->user_id)) ? $datas->user_id : false;
     }
 
-    public function _event($datas = null) {
-        echo 'Hey ! I\'m an EVENT callback'.PHP_EOL;
-    }
+    public function _event($datas = null) {}
 
-    public function _roomleave($data = null) {
-        // Here you will receive data from the frontend roomleave event trigger.
-        echo 'Hey ! I\'m a room leave EVENT callback' . PHP_EOL;
-    }
+    public function _roomleave($data = null) {}
 }

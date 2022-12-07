@@ -20,6 +20,7 @@ class Notifications extends MY_Controller {
 		foreach ($notificationsData as $key => $value) {
 			$userData = $this->account_model->getAccountData($value['user_id']);
 			$vacancyItem = [
+				'id' => $value['id'],
 				'job' => $value['job'],
 				'slug' => $value['slug'],
 				'timestamp' => $value['timestamp'],
@@ -33,6 +34,34 @@ class Notifications extends MY_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('notifications/index', $this->data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $this->data);
+	}
+
+	public function delete() {
+		$notification_id = $this->input->post('id');
+
+		$this->notifications_model->deleteNotification($notification_id);
+
+		$notification_count = $this->notifications_model->getNotificationCount(USER_ID);
+
+		$response = [
+			"count" => $notification_count,
+			"status" => TRUE
+		];
+		echo json_encode($response);
+	}
+
+	public function update() {
+		if($this->notifications_model->isNotificationsExist(USER_ID)) {
+			$response = [
+				"notifications_is_exist" => TRUE
+			];
+			echo json_encode($response);
+		} else {
+			$response = [
+				"notifications_is_exist" => FALSE
+			];
+			echo json_encode($response);
+		}
 	}
 }

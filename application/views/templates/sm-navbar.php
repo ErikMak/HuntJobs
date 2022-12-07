@@ -24,6 +24,8 @@
 			<a class="position-relative d-flex justify-content-center align-items-center flex-column" href="/notifications">
 				<span class="icon position-relative text-center">
 					<i  class="far fa-bell"></i>
+					<span class="notification-circle <? echo ($is_notifications_exist) ? "show" : ""; ?> position-absolute translate-middle p-1 rounded-circle">
+					</span>
 				</span>
 				<span class="text position-absolute">
 					Уведомления
