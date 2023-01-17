@@ -16,3 +16,9 @@ Running following command in the folder of project:
 ```
 composer install
 ```
+
+## :arrow_forward: Run web-socket server
+Open command prompt then type the command bellow in the folder of project:
+```
+php index.php websocket index
+```
